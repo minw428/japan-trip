@@ -129,7 +129,7 @@ body.restaurant-modal-open{overflow:hidden}
 'use strict';
 const foodCell={
  suzuki:0,rokurin:2,ikaruga:1,kaneko:5,hanamaru:3,imahan:4,grill:6,kibun:3,urin:1,umikaze:1,
- tonkatsujp:0,junchan:0,menchira:7,burger:8,chao:9,kuroda:10,kanekobbq:10,yoroniku:10,ino:1,omen:7,hafuu:11,roku:10,
+ tonkatsujp:0,junchan:0,menchira:7,burger:8,chao:9,kuroda:10,kanekobbq:10,ino:1,omen:7,hafuu:11,roku:10,
  izuu:3,yoshimura:12,hirokawa:13,shoraian:14,saganoyu:18,yamamoto:15,smart:19,inoda:15,petit:15,
  walden:15,ajinoya:16,mizuno:16,fukutaro:16,ippo:17,joroku:1,imai:7,hide:3
 };
@@ -169,7 +169,6 @@ const R={
  chao:['차오밤부','チャオバンブー','태국식 볶음밥·면','¥1,500–2,500','3.54 / 1,360명','https://tabelog.com/tokyo/A1306/A130602/13009408/','','매운맛·새우 확인'],
  kuroda:['야키니쿠 구로다','焼肉 黒田','소고기 구이','¥8,000–12,000','3.52 / 727명','https://tabelog.com/tokyo/A1303/A130301/13235527/','','시부야·신센'],
  kanekobbq:['다이칸야마 야키니쿠 카네코','代官山 焼肉かねこ','흑모와규 모둠·야키니쿠','식사 ¥12,000–15,000 예상','3.68 / 374명','https://tabelog.com/tokyo/A1303/A130303/13178613/','','전화 예약 필수 · 방문 한 달 전부터 접수 (11/27 방문: 10/27부터 문의) · 03-6415-4129 · 예약 미완료 · 다이칸야마역 도보 약 7분 · 고기 모둠 ¥9,020 + 서비스료 8%, 식사·음료 별도 · 2시간제'],
- yoroniku:['요로니쿠 남아오야마 본점','よろにく 南青山','와규 야키니쿠·트러플 스키야키 코스','기본 ¥14,630 / 트러플 ¥16,390 / 스페셜 ¥23,650','3.81 / 3,077명','https://tabelog.com/tokyo/A1306/A130602/13042979/','','저녁 후보 · 예약 미완료 · 타베로그 온라인 예약 또는 전화 문의 03-3498-4629 · 표시 가격은 세금·서비스료 10% 포함, 음료 별도 · 추천: 트러플 코스 19품·2시간 · 소고기 회·육회·내장 포함, 익힘 정도·대체 가능 여부 사전 확인 · 스페셜은 카츠샌드·캐비아 포함 · 표참도역 B1 출구 도보 약 10분 · 南青山6-6-22 ルナロッサ B1 · 전면 금연·개인실 확정 아님'],
  ino:['멘야 이노이치','麺屋 猪一','생선 육수 라멘','¥1,500–2,500','3.71 / 1,133명','https://tabelog.com/kyoto/A2601/A260201/26032368/','ramen','대기·점심 마감 확인'],
  omen:['오멘 닛폰 시조폰토초','おめんNIPPON 四条先斗町店','야채 우동','¥2,000–3,000','3.54 / 452명','https://tabelog.com/kyoto/A2601/A260201/26001805/','udon','점심 마지막 주문 15:00 기준'],
  hafuu:['하후 본점','はふう 本店','비프커틀릿·스테이크','점심 ¥3,000–6,000 / 저녁 ¥10,000–15,000','3.65 / 768명','https://tabelog.com/kyoto/A2601/A260202/26000943','','기온에서 택시 이동 필요'],
@@ -195,7 +194,7 @@ const R={
 const meals={
  '2026-11-25':[['늦은 점심',['suzuki','rokurin','ikaruga','kaneko','hanamaru']],['저녁',['kaneko','suzuki','rokurin','ikaruga','hanamaru']]],
  '2026-11-26':[['점심',['imahan','grill','urin','umikaze','kibun']],['저녁',['grill','imahan','urin','umikaze','kibun']]],
- '2026-11-27':[['점심',['tonkatsujp','junchan','menchira','burger','chao']],['저녁',['kanekobbq','yoroniku','kuroda','menchira','burger','chao','hanamaru']]],
+ '2026-11-27':[['점심',['tonkatsujp','junchan','menchira','burger','chao']],['저녁',['kanekobbq','kuroda','menchira','burger','chao','hanamaru']]],
  '2026-11-28':[['점심',['omen','ino','hafuu','smart','izuu']],['저녁',['roku','omen','ino','hafuu','izuu']]],
  '2026-11-29':[['아침',['yamamoto','smart','inoda','petit','walden']],['점심',['yoshimura','hirokawa','shoraian','saganoyu','omen']],['저녁',['omen','roku','ino','hafuu','izuu']]],
  '2026-11-30':[['아침',['yamamoto','smart','inoda','petit','walden']],['점심',['omen','ino','hafuu','smart','izuu']],['저녁',['mizuno','fukutaro','imai','ippo','hide']]],
@@ -277,7 +276,7 @@ function mealCard(id,city){
  const imageLabel=(id==='grill'?'스테이크 일러스트':r[2]+' 음식 일러스트')+(recommended?' · 도쿄 30끼 추천':'');
  const media=id==='grill'?'<div class="foodmedia steak" role="img" aria-label="'+esc(imageLabel)+'">'+badge+'</div>':'<div class="foodmedia atlas" data-atlas="'+atlas+'" data-cell="'+imageCell+'" role="img" aria-label="'+esc(imageLabel)+'">'+badge+'</div>';
  const detailsButton=recommended?'<button type="button" class="food-detail-open" data-restaurant-details="'+esc(id)+'" aria-haspopup="dialog" aria-controls="restaurant-detail" aria-label="'+esc(r[0])+' 도쿄 30끼 추천 메뉴와 팁 보기">추천 메뉴·팁 보기 ＋</button>':'';
- const phoneLink=id==='kanekobbq'?'<a href="tel:+81364154129" aria-label="야키니쿠 카네코 전화 예약 +81 3 6415 4129">전화 예약 ↗</a>':id==='yoroniku'?'<a href="tel:+81334984629" aria-label="요로니쿠 남아오야마 본점 전화 문의 +81 3 3498 4629">전화 문의 ↗</a>':'';
+ const phoneLink=id==='kanekobbq'?'<a href="tel:+81364154129" aria-label="야키니쿠 카네코 전화 예약 +81 3 6415 4129">전화 예약 ↗</a>':'';
  return '<article class="food'+(recommended?' has-details':'')+'" data-restaurant="'+esc(id)+'">'+media+'<div class="foodbody"><strong>'+esc(r[0])+'</strong><span class="jp" lang="ja">'+esc(r[1])+'</span><span class="meta">'+esc(r[2])+' · '+esc(r[3])+'</span><span class="meta">타베로그 '+esc(r[4])+'</span><span class="notes">'+esc(r[7])+'</span>'+detailsButton+'<div class="foodlinks"><a href="'+r[5]+'" target="_blank" rel="noopener noreferrer">타베로그</a><a href="'+maps(r[1]+' '+city)+'" target="_blank" rel="noopener noreferrer">Google Maps</a>'+phoneLink+'</div></div></article>'
 }
 let restaurantDetailTrigger=null;
