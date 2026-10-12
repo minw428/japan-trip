@@ -130,7 +130,7 @@ body.restaurant-modal-open{overflow:hidden}
 const foodCell={
  suzuki:0,rokurin:2,ikaruga:1,kaneko:5,hanamaru:3,imahan:4,grill:6,kibun:3,urin:1,umikaze:1,
  tonkatsujp:0,junchan:0,menchira:7,burger:8,chao:9,kuroda:10,kanekobbq:10,ino:1,omen:7,hafuu:11,roku:10,
- chidoritei:3,yoshimura:12,hirokawa:13,shoraian:14,saganoyu:18,yamamoto:15,smart:19,inoda:15,petit:15,
+ yoshimura:12,hirokawa:13,shoraian:14,saganoyu:18,yamamoto:15,smart:19,inoda:15,petit:15,
  walden:15,ajinoya:16,mizuno:16,fukutaro:16,ippo:17,joroku:1,imai:7,hide:3
 };
 const tokyo30Recommended=new Set(['kaneko','tsujihan','bairin','bincho','bazoku','ginzatei','kyubey','hikiniku','moheji','toritake','sama','misaki','katsukami2','newtorigin','poppy']);
@@ -173,7 +173,6 @@ const R={
  omen:['오멘 닛폰 시조폰토초','おめんNIPPON 四条先斗町店','야채 우동','¥2,000–3,000','3.54 / 452명','https://tabelog.com/kyoto/A2601/A260201/26001805/','udon','점심 마지막 주문 15:00 기준'],
  hafuu:['하후 본점','はふう 本店','비프커틀릿·스테이크','점심 ¥3,000–6,000 / 저녁 ¥10,000–15,000','3.65 / 768명','https://tabelog.com/kyoto/A2601/A260202/26000943','','기온에서 택시 이동 필요'],
  roku:['기온 로쿠로쿠','祇園 鹿六','야키니쿠','¥12,000–20,000','3.66 / 227명','https://tabelog.com/kyoto/A2601/A260301/26002425/','','월요일 휴무'],
- chidoritei:['치도리테이','千登利亭','니기리·교토 스시·유부초밥','점심 ¥2,000–4,500 예상','3.60 / 248명','https://tabelog.com/kyoto/A2601/A260301/26000570/','sushi','점심 대안 · 예약 미완료 · 11:00–17:00 (마지막 주문 16:30), 수·목 휴무: 공식 안내 우선 · 075-561-1907 · 기온시조역 도보 약 5분 · 니기리 포함 카모가와 세트 ¥2,600, 유부초밥 5개 ¥1,000, 붕장어 봉초밥 4조각 ¥1,350: 공식 메뉴 기준 · 고등어 봉초밥이 부담스러우면 다른 메뉴 선택 · 연어 니기리·낱개 주문 및 세트 재료 변경 가능 여부 사전 확인 · 저녁 영업 없음'],
  yoshimura:['아라시야마 요시무라','嵐山よしむら','소바·튀김','¥2,000–3,500','3.50 / 1,039명','https://tabelog.com/kyoto/A2601/A260403/26000403/','','예약 불가'],
  hirokawa:['우나기야 히로카와','うなぎ屋 廣川','장어덮밥','¥6,000–8,000','3.72 / 876명','https://tabelog.com/kyoto/A2601/A260403/26000921/','','완전 예약제'],
  shoraian:['쇼라이안','松籟庵','두부 중심 코스','¥5,500–7,000','3.60 / 359명','https://tabelog.com/kyoto/A2601/A260403/26003826/','','예약·식사 시간 확보'],
@@ -195,9 +194,9 @@ const meals={
  '2026-11-25':[['늦은 점심',['suzuki','rokurin','ikaruga','kaneko','hanamaru']],['저녁',['kaneko','suzuki','rokurin','ikaruga','hanamaru']]],
  '2026-11-26':[['점심',['imahan','grill','urin','umikaze','kibun']],['저녁',['grill','imahan','urin','umikaze','kibun']]],
  '2026-11-27':[['점심',['tonkatsujp','junchan','menchira','burger','chao']],['저녁',['kanekobbq','kuroda','menchira','burger','chao','hanamaru']]],
- '2026-11-28':[['점심',['omen','ino','hafuu','smart','chidoritei']],['저녁',['roku','omen','ino','hafuu']]],
+ '2026-11-28':[['점심',['omen','ino','hafuu','smart']],['저녁',['roku','omen','ino','hafuu']]],
  '2026-11-29':[['아침',['yamamoto','smart','inoda','petit','walden']],['점심',['yoshimura','hirokawa','shoraian','saganoyu','omen']],['저녁',['omen','roku','ino','hafuu']]],
- '2026-11-30':[['아침',['yamamoto','smart','inoda','petit','walden']],['점심',['omen','ino','hafuu','smart','chidoritei']],['저녁',['mizuno','fukutaro','imai','ippo','hide']]],
+ '2026-11-30':[['아침',['yamamoto','smart','inoda','petit','walden']],['점심',['omen','ino','hafuu','smart']],['저녁',['mizuno','fukutaro','imai','ippo','hide']]],
  '2026-12-01':[['점심',['ajinoya','mizuno','imai','ippo','joroku']],['저녁',['ajinoya','fukutaro','imai','joroku','hide']]]
 };
 const tokyo30Meals={
