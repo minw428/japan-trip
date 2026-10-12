@@ -21,8 +21,9 @@ details{border:1px solid var(--line);border-radius:12px;margin:9px 0;background:
 .meal{margin:12px 0 19px}.meal h4{font-size:.98rem;margin:0 0 8px}.foodgrid{display:grid;gap:10px}.food{display:grid;grid-template-columns:95px 1fr;background:#fbfcfc;border:1px solid var(--line);border-radius:12px;overflow:hidden}.foodmedia{min-height:118px;background:linear-gradient(145deg,#dce8e3,#e8d7cc);position:relative}.foodmedia img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}.foodmedia.atlas{background-repeat:no-repeat}.foodbody{padding:10px}.foodbody strong{display:block;font-size:.9rem;line-height:1.35}.jp{display:block;color:var(--muted);font-size:.75rem}.foodbody .meta{display:block;font-size:.77rem;margin-top:5px}.foodbody .notes{display:block;color:#7a6259;font-size:.72rem;margin-top:4px}.foodlinks{display:flex;gap:9px;margin-top:8px;font-size:.75rem;font-weight:800}.note{background:#fff9ea;border:1px solid #efdbac;border-radius:12px;padding:12px;font-size:.83rem;color:#5a4a2c}.stay{font-size:.95rem;font-weight:800;margin:0 0 7px}.muted{color:var(--muted);font-size:.81rem}.check{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line)}.check:last-child{border:0}.check input{accent-color:var(--tokyo);width:18px;height:18px;margin-top:3px}.check label{font-size:.9rem}.check small{display:block;color:var(--muted)}.status{display:block;font-size:.75rem;color:var(--muted);margin-top:12px}.bottom{position:fixed;bottom:0;left:0;right:0;z-index:20;background:#fff;border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom);box-shadow:0 -8px 25px rgba(16,40,58,.08)}.bottom .items{max-width:780px;margin:auto;display:grid;grid-template-columns:repeat(5,1fr)}.bottom button{border:0;background:none;color:#6f8290;padding:10px 2px 8px;font-size:.7rem;font-weight:800}.bottom button[aria-current=true]{color:var(--ink)}.bottom b{display:block;font-size:1.18rem;line-height:1.2}.view{display:none}.view.active{display:block}.pagefoot{font-size:.75rem;color:var(--muted);padding:8px 2px 22px}.install{margin-top:10px;border:1px solid #8db8be;background:#e8f3f4;color:#115e69;border-radius:9px;padding:8px 12px;font-weight:800}
 
 .foodmedia.steak{background-image:url('./grill-grand-steak.jpg');background-size:cover;background-position:center}
-.foodmedia.kushikatsu{background:#fff0d7 url('./kushikatsu-caricature.jpg') no-repeat center;background-size:contain}
-.foodmedia.snack{background:#f6eee0}.foodmedia.snack img{object-fit:contain}.snack-route{margin:8px 0;color:#5f6d72;font-size:.8rem;line-height:1.6}
+.foodmedia.kushikatsu{background:#fff0d7 url('./kushikatsu-caricature.jpg') no-repeat center;background-size:cover}
+.foodmedia.snack{background:#f6eee0}.foodmedia.snack img{object-fit:cover}.snack-route{margin:8px 0;color:#5f6d72;font-size:.8rem;line-height:1.6}
+.food-source.kyoto-source{background:#dceee8;color:#245749}.video-reason{margin:8px 0;padding:9px;border-left:3px solid #89b3a1;background:#eff6f2;font-size:.76rem;line-height:1.6}.video-reason small{display:block;color:#60726b;font-size:.65rem;margin-top:4px}.foodlinks{flex-wrap:wrap}.video-research summary{cursor:pointer;font-weight:800}.video-research ol{padding-left:24px}.video-research li{margin:10px 0;font-size:.8rem;line-height:1.6}.video-research small{display:block;color:var(--muted)}
 .food-source{position:absolute;top:6px;left:5px;z-index:2;max-width:calc(100% - 10px);padding:4px 6px;border:1px solid #e4b941;border-radius:999px;background:#ffe178;color:#513900;font-size:10px;font-weight:800;line-height:1.2;white-space:nowrap;box-shadow:0 2px 6px rgba(72,48,0,.16)}
 .food.has-details{cursor:pointer}.food.has-details:hover{border-color:#d6b34c}.food-detail-open{display:block;width:100%;min-height:40px;margin-top:9px;border:1px solid #e4c66c;border-radius:9px;padding:7px 9px;background:#fff5c9;color:#654b0c;text-align:left;font:inherit;font-size:.75rem;font-weight:800;cursor:pointer}.food-detail-open:focus-visible,.restaurant-close:focus-visible{outline:3px solid #147b89;outline-offset:2px}
 body.restaurant-modal-open{overflow:hidden}
@@ -198,13 +199,37 @@ const R={
  daruma:['쿠시카츠 다루마 난바 본점','元祖串かつ だるま なんば本店','고기·채소 꼬치튀김','¥2,000–3,500 예상','3.40 / 717명','https://tabelog.com/osaka/A2701/A270202/27012813/','','사용자 지정 후보 · 타베로그 3.5 미만 예외 · 예약 미완료 · 난바1-5-24 (신세카이 총본점·도톤보리점 아님) · 평일 11:30–22:30, 마지막 주문 22:00 · 공식 안내: 평일 2명부터 예약 가능, 예약 시 1인 1세트·90분제 · 세트 해산물 변경 가능 여부 사전 확인 · 1인 1음료 (16세 포함·무알코올 가능) · 소고기·돼지고기·메추리알·연근·치즈 추천 · 06-6213-2033 · 전면 금연·카드 가능'],
  hide:['스시 히데조','鮨 ひでぞう','스시·단품 주문','¥6,000–8,000','3.63 / 431명','https://tabelog.com/osaka/A2701/A270202/27094403/','sushi','예약 시 16세 동반·단품 주문 확인']
 };
+Object.assign(R,{
+ kuchibashi:['쿠치바시 모단','くちばしモダン','야키토리 코스','¥7,000–9,000 예상 · 코스 ¥6,600 + 음료','3.68 / 359명','https://tabelog.com/kyoto/A2601/A260201/26022582/','','예약 미완료 · 코스만 제공, 1인 1음료 필수(16세는 무알코올) · 내장·날고기·닭회 등 비선호 식재료를 예약 시 확인 · 18:00–24:00, 수·목 휴무 · 카드 가능·전면 금연 · 기온에서 택시 약 10–20분 또는 도보 약 25–35분(예상) · 식사 90–120분 여유 권장, 11/29 선택 시 19:00 에이칸도 출발과 양립하지 않으므로 야간 관람을 늦추거나 생략 · 075-352-0633'],
+ kyounawa:['교 우나와 본점 · 시조 사카이마치','京 うな和 本店 四条堺町','장어 히츠마부시·장어구이','¥4,000–6,000 예상','3.56 / 254명','https://tabelog.com/kyoto/A2601/A260201/26034563/','','예약 미완료 · 야오야초553-2, 신궁도점·기온야사카점과 구분 · 작은 히츠마부시 ¥3,960, 상 히츠마부시 ¥5,610(공식 메뉴) · 해산물 가이세키 대신 단품 정식 권장 · 11:00–20:30, 마지막 주문20:00 · 카드·교통카드 가능 · 숙소에서 택시 약 10–20분 또는 도보 약 20–30분(예상) · 11/30에는 14:40 짐 회수를 위해 대기가 길면 산조 인근 후보로 변경'],
+ kiraku:['폰토초 야키니쿠 키라쿠','先斗町焼肉 きらく','와규 야키니쿠·코스','저녁 ¥9,000–14,000 예상','3.61 / 311명','https://tabelog.com/kyoto/A2601/A260301/26041041/','','예약 미완료 · 와규 모둠·우설·등심 구이 또는 키라쿠 코스 ¥8,800(음료·추가 주문 별도) · 영상의 와규 히츠마부시는 주말 점심 메뉴: 저녁 제공을 전제하지 않으며 현재 판매 여부 재확인 · 매일 저녁17:00–24:00, 마지막 주문23:00 · 카드 가능 · 분연 안내이므로 16세 동반 가능 실내 금연석을 예약 시 확인 · 산조역 도보5분, 숙소에서 도보 약 10–15분(예상) · 코스 선택 시 11/29 야간 관람과 시간 조율 · 075-606-5153']
+});
+Object.assign(foodCell,{kyounawa:13,kiraku:10});
+Object.assign(tokyo30FoodCell,{kuchibashi:1}); // Shared yakitori illustration, not a Tokyo 30-meal recommendation.
+const kyotoVideoPicks={
+ kuchibashi:{url:'https://www.youtube.com/shorts/sOrm_7lN66c',reason:'한 가지 꼬치를 많이 먹는 식사가 아니라, 부위마다 다른 굽기와 구성을 코스로 즐기고 싶을 때. 영상에서도 야키토리 코스의 구성과 부위별 맛을 좋게 평가한 곳입니다.',official:'https://www.instagram.com/kuchibashimodan/',phone:'+81753520633'},
+ kyounawa:{url:'https://www.youtube.com/shorts/tKSLPYeji3s',reason:'구운 장어를 그대로 먹고, 약미와 육수로 맛을 바꿔가며 한 끼를 즐기는 히츠마부시. 영상에서는 재방문하고 싶고 귀국 후에도 생각나는 장어 식사로 소개했습니다.',official:'https://kyo-unawa.com/menu/'},
+ kiraku:{url:'https://www.youtube.com/shorts/dDACuQ9lvNk',reason:'와규 안심과 등심의 부드러운 식감을 즐기는 식사 후보. 영상의 개인 평가 5/5는 주말 점심 히츠마부시에 대한 감상이며, 저녁 코스 평가로 바꿔 해석하지 않았습니다.',phone:'+81756065153'}
+};
+const kyotoVideoResearch={checked:'2026-10-12',start:'2024-10-12',end:'2026-10-12',videos:[
+ ['dDACuQ9lvNk','교토 구글맵 맛집 평점 매기기','@space_tamnik',7115734,'2026-02-16','shorts','키라쿠 검토·추가. 낮은 평가를 받은 교토고텐고·ROKU·Hanaya는 추천 근거로 사용하지 않음'],
+ ['qyJN7OkNdRs','교토 8박 30끼 맛있게 먹었던 메뉴들 족보정리','@space_tamnik',4140456,'2025-03-28','shorts','분고 기온은 평점·리뷰어 기준 미달. 스시·회 위주 식당은 가족 취향으로 제외'],
+ ['6RP0lzp0zBg','전세계 다 가본 노희영이 가을마다 교토에 꼭 다시 가는 이유 (교토 맛집 TOP7)','큰손 노희영',988666,'2025-11-27','watch','오와리야 본점은 현재 타베로그 운영 확인 보류. 해산물 중심 가이세키·테마리스시는 제외'],
+ ['gjjBn_DCFxc','교토 최고의 맛도리를 찾아서','원지의하루',535272,'2026-07-30','watch','설명·자막 확인(설명에 11끼 명시). 식당 실명을 지점까지 확정하지 못한 방문지는 임의 추가하지 않음'],
+ ['tKSLPYeji3s','다시 교토가도 무조건 갈 교토 맛집 총정리','@uniyotravel',510041,'2025-03-28','shorts','교 우나와 본점 추가. 기존 스마트커피 유지. 저가·가성비만을 추가 근거로 삼지 않음'],
+ ['sOrm_7lN66c','교토 6박 25끼 또먹고싶은 맛집정리','@space_tamnik',464819,'2025-11-30','shorts','쿠치바시 모단 추가. 고등어 스시 제외, 금각사 도이카츠만은 평점·리뷰어 기준 미달'],
+ ['TcjkfTQM3Lc','일본만 20번 간 사람의 오사카 교토 브이로그 · 15끼 현지인 맛집','셈버 Cember',390942,'2025-08-01','watch','교토 식당만 검토. 카메하치 본점은 평점 기준 미달'],
+ ['DKs679DHBO4','매년 교토 가는 사람이 알려주는 1일 8끼 찐맛집 루트','미미묭',173075,'2025-12-16','watch','HANANA는 평점 기준 미달. 기존 아라비카·이노다 후보 유지'],
+ ['_gmpIFT8Ec8','ep.2 교토 20끼 모음 · 5박6일 찐맛집 추천','따봉이누나둘',157703,'2025-02-08','watch','음식 챕터 검토. 카츠쿠라 삼조 본점은 평점 기준 미달, 영상만으로 고급 코스의 상세 조건을 확정하지 않음'],
+ ['7hwXoPEYCz4','교토 필수 맛집 11곳 총집합 [25년 최신]','공간빵',138191,'2025-01-21','watch','음식 챕터 검토. 간식·공연형 오므라이스·화염 라멘을 이번 본격 식사 후보로 확대하지 않음']
+]};
 const meals={
  '2026-11-25':[['늦은 점심',['suzuki','rokurin','ikaruga','kaneko','hanamaru']],['저녁',['kaneko','suzuki','rokurin','ikaruga','hanamaru']]],
  '2026-11-26':[['점심',['imahan','grill','urin','umikaze','kibun']],['저녁',['grill','imahan','urin','umikaze','kibun']]],
  '2026-11-27':[['점심',['tonkatsujp','junchan','menchira','burger','chao']],['저녁',['kanekobbq','kuroda','menchira','burger','chao','hanamaru']]],
- '2026-11-28':[['점심',['omen','ino','hafuu','smart']],['저녁',['roku','omen','ino','hafuu']]],
- '2026-11-29':[['아침',['yamamoto','smart','inoda','petit','walden']],['점심',['yoshimura','hirokawa','shoraian','saganoyu','omen']],['저녁',['omen','roku','ino','hafuu']]],
- '2026-11-30':[['아침',['yamamoto','smart','inoda','petit','walden']],['점심',['omen','ino','hafuu','smart']],['저녁',['daruma','mizuno','fukutaro','imai','ippo','hide']]],
+ '2026-11-28':[['점심',['kyounawa','omen','ino','hafuu','smart']],['저녁',['kiraku','kuchibashi','kyounawa','roku','omen','ino','hafuu']]],
+ '2026-11-29':[['아침',['yamamoto','smart','inoda','petit','walden']],['점심',['yoshimura','hirokawa','shoraian','saganoyu','omen']],['저녁',['kiraku','kuchibashi','kyounawa','omen','roku','ino','hafuu']]],
+ '2026-11-30':[['아침',['yamamoto','smart','inoda','petit','walden']],['점심',['kyounawa','omen','ino','hafuu','smart']],['저녁',['daruma','mizuno','fukutaro','imai','ippo','hide']]],
  '2026-12-01':[['점심',['daruma','ajinoya','mizuno','imai','ippo','joroku']],['저녁',['daruma','ajinoya','fukutaro','imai','joroku','hide']]]
 };
 const tokyo30Meals={
@@ -248,6 +273,7 @@ const D=[
 ['06:30','호텔 조식 시간 확인','제공 시간에 맞지 않으면 간단히 식사','meal',''],['07:10','호텔 체크아웃','','base',''],['07:25','난카이 난바역으로','캐리어 도보·역내 이동 약 25분','move','南海なんば駅'],['08:00경','라피트 탑승','예약 전 계획 · 간사이공항행','move','関西国際空港'],['08:45경','간사이공항 제1터미널','항공사 카운터 확인','base','関西国際空港 第1ターミナル'],['09:00','체크인·출국 수속','항공사 마감 시간 재확인','base',''],['11:45','파라타항공 WE0512 출발','간사이 T1 → 인천 T1 · A320','flight',''],['13:45','인천 제1터미널 도착','입국·수하물 수령','flight','인천국제공항 제1터미널']],transport:'호텔→난카이 난바역(지하철 난바역과 다른 승강장)→예약한 라피트 호차·좌석 확인→간사이공항역→제1터미널. 승차권에 기본 운임 포함 여부 확인.',rain:'공항 이동 시간을 우선 확보'}
 ];
 const todo=[
+['선택 후 가급적 빨리','교토 저녁 후보 예약·가족 조건 확인','쿠치바시 모단 +81-75-352-0633: 코스 ¥6,600 + 1음료, 내장·날고기 비선호 전달. 키라쿠 +81-75-606-5153: 16세 동반 실내 금연석·선택 코스 확인. 교 우나와는 타베로그 온라인 예약 가능. 모두 예약 미완료, 판매 시작 시점은 미확인. 11/29 긴 코스와 19:00 에이칸도 출발은 함께 확정하지 않기'],
 ['지금–10/14','항공편·호텔 예약증 확인','항공편은 제공된 정보 반영. 도쿄·오사카 조식 포함 여부와 호텔 예약 상태 확인'],
 ['지금–10/14','교토 숙소 짐 보관 문의','11/28 체크인 전, 11/30 체크아웃 후 보관 가능 여부'],
 ['지금–10/14','신칸센 수하물 크기 측정','캐리어 세 변 합 160cm 초과 시 해당 공간 포함 좌석 확인'],
@@ -289,13 +315,22 @@ function applyAtlas(){
 }
 function mealCard(id,city){
  const r=R[id],cell=foodCell[id]??15;
- const recommended=tokyo30Recommended.has(id),badge=recommended?'<span class="food-source">도쿄 30끼 추천</span>':'';
+ const videoPick=kyotoVideoPicks[id];
+ const recommended=tokyo30Recommended.has(id),badge=recommended?'<span class="food-source">도쿄 30끼 추천</span>':videoPick?'<span class="food-source kyoto-source">교토 영상 추천</span>':'';
  const atlas=Object.hasOwn(tokyo30FoodCell,id)?'tokyo30':'food',imageCell=atlas==='tokyo30'?tokyo30FoodCell[id]:cell;
  const imageLabel=(id==='grill'?'스테이크 일러스트':r[2]+' 음식 일러스트')+(recommended?' · 도쿄 30끼 추천':'');
  const media=snackImages[id]?'<div class="foodmedia snack"><img src="./'+esc(snackImages[id])+'" alt="'+esc(imageLabel)+'" loading="lazy"></div>':id==='grill'||id==='daruma'?'<div class="foodmedia '+(id==='grill'?'steak':'kushikatsu')+'" role="img" aria-label="'+esc(imageLabel)+'">'+badge+'</div>':'<div class="foodmedia atlas" data-atlas="'+atlas+'" data-cell="'+imageCell+'" role="img" aria-label="'+esc(imageLabel)+'">'+badge+'</div>';
  const detailsButton=recommended?'<button type="button" class="food-detail-open" data-restaurant-details="'+esc(id)+'" aria-haspopup="dialog" aria-controls="restaurant-detail" aria-label="'+esc(r[0])+' 도쿄 30끼 추천 메뉴와 팁 보기">추천 메뉴·팁 보기 ＋</button>':'';
- const phoneLink=id==='kanekobbq'?'<a href="tel:+81364154129" aria-label="야키니쿠 카네코 전화 예약 +81 3 6415 4129">전화 예약 ↗</a>':id==='daruma'?'<a href="tel:+81662132033" aria-label="다루마 난바 본점 전화 문의 +81 6 6213 2033">전화 문의 ↗</a>':'';
- return '<article class="food'+(recommended?' has-details':'')+'" data-restaurant="'+esc(id)+'">'+media+'<div class="foodbody"><strong>'+esc(r[0])+'</strong><span class="jp" lang="ja">'+esc(r[1])+'</span><span class="meta">'+esc(r[2])+' · '+esc(r[3])+'</span><span class="meta">타베로그 '+esc(r[4])+'</span><span class="notes">'+esc(r[7])+'</span>'+detailsButton+'<div class="foodlinks"><a href="'+r[5]+'" target="_blank" rel="noopener noreferrer">타베로그</a><a href="'+maps(r[1]+' '+city)+'" target="_blank" rel="noopener noreferrer">Google Maps</a>'+phoneLink+'</div></div></article>'
+ const phoneLink=id==='kanekobbq'?'<a href="tel:+81364154129" aria-label="야키니쿠 카네코 전화 예약 +81 3 6415 4129">전화 예약 ↗</a>':id==='daruma'?'<a href="tel:+81662132033" aria-label="다루마 난바 본점 전화 문의 +81 6 6213 2033">전화 문의 ↗</a>':videoPick?.phone?'<a href="tel:'+esc(videoPick.phone)+'">전화 문의 ↗</a>':'';
+ const videoReason=videoPick?'<blockquote class="video-reason">'+esc(videoPick.reason)+'<small>영상의 추천 취지를 요약한 설명 · 직접 인용 아님</small></blockquote>':'';
+ const videoLinks=videoPick?'<a href="'+esc(videoPick.url)+'" target="_blank" rel="noopener noreferrer">추천 영상 ↗</a>'+(videoPick.official?'<a href="'+esc(videoPick.official)+'" target="_blank" rel="noopener noreferrer">공식 안내 ↗</a>':''):'';
+ const foodCity=id==='kyounawa'?'교토':city;
+ return '<article class="food'+(recommended?' has-details':'')+'" data-restaurant="'+esc(id)+'">'+media+'<div class="foodbody"><strong>'+esc(r[0])+'</strong><span class="jp" lang="ja">'+esc(r[1])+'</span><span class="meta">'+esc(r[2])+' · '+esc(r[3])+'</span><span class="meta">타베로그 '+esc(r[4])+'</span>'+videoReason+'<span class="notes">'+esc(r[7])+'</span>'+detailsButton+'<div class="foodlinks"><a href="'+r[5]+'" target="_blank" rel="noopener noreferrer">타베로그</a><a href="'+maps(r[1]+' '+foodCity)+'" target="_blank" rel="noopener noreferrer">Google Maps</a>'+phoneLink+videoLinks+'</div></div></article>'
+}
+function renderKyotoVideoResearch(d){
+ if(!['2026-11-28','2026-11-29','2026-11-30'].includes(d.id))return '';
+ const research=kyotoVideoResearch;
+ return '<div class="panel"><div class="panelpad"><h3>교토 미식 영상에서 고른 추가 후보</h3><p class="hint">저가·가성비 중심이 아닌, 음식 자체를 즐길 만한 식사를 우선했습니다. 신규 3곳은 타베로그 3.5 이상·리뷰어 200명 이상 기준을 유지합니다. 확정 예약은 아니며 기존 관광 일정은 변경하지 않았습니다.</p><details class="video-research"><summary>검토 영상 10개 · 조회수·선정 근거 보기</summary><p class="hint">'+research.start+'~'+research.end+' 공개된 한국어 ‘교토 끼’, ‘교토 맛집 모음’ 검색 결과에서 숫자 끼니·여러 맛집 소개가 명시된 후보를 확인해 조회수순으로 정리했습니다. 쇼츠 포함, 단일 식당 영상·관광 중심 일반 브이로그·교토 식당 없는 영상·기간 밖 영상은 제외했습니다. '+research.checked+' 확인 스냅샷이며 유튜브 전체의 공식·확정 TOP 10은 아닙니다. 식당 선정은 영상의 인기와 별개로 현재 운영·가족 취향·동선을 대조했습니다.</p><ol>'+research.videos.map(v=>'<li><a href="https://www.youtube.com/'+(v[5]==='shorts'?'shorts/':'watch?v=')+v[0]+'" target="_blank" rel="noopener noreferrer">'+esc(v[1])+'</a><small>'+esc(v[2])+' · '+esc(v[4])+' · '+v[3].toLocaleString('ko-KR')+'회 · '+(v[5]==='shorts'?'쇼츠':'일반 영상')+'</small>'+esc(v[6])+'</li>').join('')+'</ol><p class="hint">영상 설명·챕터와 확인 가능한 자막을 검토했습니다. 지점·메뉴를 확인하지 못한 곳은 추측하여 추가하지 않았습니다. 제외 식당의 현재 조건은 아래 조사 기록에서 확인할 수 있습니다.</p><a href="./kyoto-video-review.html">식당별 추가·제외 근거 전체 보기 ↗</a></details></div></div>';
 }
 let restaurantDetailTrigger=null;
 function restaurantSummaryHTML(id){
@@ -399,6 +434,7 @@ function render(){
  document.getElementById('transitview').innerHTML=renderTransit(d);
  document.getElementById('schedule').innerHTML+=renderSnacks(d,true);
  document.getElementById('foodview').innerHTML+=renderSnacks(d);
+ document.getElementById('foodview').innerHTML+=renderKyotoVideoResearch(d);
  document.getElementById('hotelsview').innerHTML='<div class="panel"><div class="panelpad"><h3>숙소 3곳</h3>'+H.map(h=>'<div class="meal"><strong>'+esc(h[0])+' · '+esc(h[3])+'</strong><p class="stay">'+esc(h[1])+'</p><p class="muted">'+esc(h[4])+'</p><a class="pill" href="'+maps(h[2])+'" target="_blank" rel="noopener noreferrer">Google Maps 열기 ↗</a></div>').join('')+'</div></div>';
  document.getElementById('checkview').innerHTML='<div class="panel"><div class="panelpad"><h3>출발 전 준비</h3><p class="hint">체크 상태는 이 기기에만 저장됩니다.</p>'+todo.map((t,i)=>'<div class="check"><input type="checkbox" id="t'+i+'" data-todo="'+i+'" '+(localStorage.getItem('tripTodo'+i)==='1'?'checked':'')+'><label for="t'+i+'"><strong>'+esc(t[0])+' · '+esc(t[1])+'</strong><small>'+esc(t[2])+'</small></label></div>').join('')+'</div></div>';
  document.querySelectorAll('#dates button').forEach(b=>b.addEventListener('click',()=>{current=Number(b.dataset.day);render();window.scrollTo(0,0)}));
