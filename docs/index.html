@@ -22,6 +22,7 @@ details{border:1px solid var(--line);border-radius:12px;margin:9px 0;background:
 
 .foodmedia.steak{background-image:url('./grill-grand-steak.jpg');background-size:cover;background-position:center}
 .foodmedia.kushikatsu{background:#fff0d7 url('./kushikatsu-illustration.svg') no-repeat center;background-size:contain}
+.foodmedia.snack{background:#f6eee0}.foodmedia.snack img{object-fit:contain}.snack-route{margin:8px 0;color:#5f6d72;font-size:.8rem;line-height:1.6}
 .food-source{position:absolute;top:6px;left:5px;z-index:2;max-width:calc(100% - 10px);padding:4px 6px;border:1px solid #e4b941;border-radius:999px;background:#ffe178;color:#513900;font-size:10px;font-weight:800;line-height:1.2;white-space:nowrap;box-shadow:0 2px 6px rgba(72,48,0,.16)}
 .food.has-details{cursor:pointer}.food.has-details:hover{border-color:#d6b34c}.food-detail-open{display:block;width:100%;min-height:40px;margin-top:9px;border:1px solid #e4c66c;border-radius:9px;padding:7px 9px;background:#fff5c9;color:#654b0c;text-align:left;font:inherit;font-size:.75rem;font-weight:800;cursor:pointer}.food-detail-open:focus-visible,.restaurant-close:focus-visible{outline:3px solid #147b89;outline-offset:2px}
 body.restaurant-modal-open{overflow:hidden}
@@ -139,6 +140,11 @@ const tokyo30FoodCell={tsujihan:0,toritake:1,moheji:2,sama:3,newtorigin:4,ginzat
 Object.assign(foodCell,{bairin:0,bincho:13,bazoku:1,kyubey:3,hikiniku:8,misaki:3,katsukami2:0,poppy:18});
 const heroLabels=['도쿄역·마루노우치','아사쿠사·센소지','메이지신궁·시부야','기요미즈데라·히가시야마','아라시야마','후시미이나리','도톤보리·난바','간사이공항'];
 const R={
+ kasagi:['가사기야','かさぎ屋','오하기·젠자이·전통 단팥 간식','¥800–1,500 예상','3.62 / 459명','https://tabelog.com/kyoto/A2601/A260301/26000596/','','니넨자카 산책 중 실내 휴식 · 오하기 또는 따뜻한 젠자이 추천 · 10:00–17:30, 화요일 휴무 · 예약 불가·현금 준비 · 기요미즈데라 올라가기 전 20–30분, 대기 길면 생략 · 가격은 간식 1인 예상 범위'],
+ kagizen:['가기젠 요시후사 시조 본점','鍵善良房 四条本店','구즈키리·겨울 젠자이·일본차','¥1,400–2,000 예상','3.78 / 1,933명','https://tabelog.com/kyoto/A2601/A260301/26001887/','','기온→히가시야마 이동 전 좌석 휴식 · 대표 구즈키리 또는 겨울 기비모치 젠자이 추천 (공식 겨울 메뉴 ¥1,400) · 찻집 10:00–18:00, 마지막 주문 17:30, 월요일 휴무 · 예약 불가·테이크아웃 불가 · 11/28 낮에만 선택, 기요미즈데라 관람 후에는 늦음'],
+ shinpachi:['신파치 차야','新八茶屋','젤라토·아이스크림','¥500–1,000 예상','3.62 / 534명','https://tabelog.com/kyoto/A2601/A260403/26001309/','','도게츠교 북쪽 입구 주변 · 젤라토의 당일 맛·가격을 보고 선택 · 10:00–18:00, 목요일 휴무 · 포장 위주·벤치 좌석은 제한적 · 추운 날은 아이스크림 대신 아라비카 따뜻한 커피 또는 기존 사가노유 실내 휴식 · 대기 제외 10–15분'],
+ arabica:['퍼센트 아라비카 교토 아라시야마','アラビカ京都 嵐山','커피·카페라테','¥500–900 예상','3.57 / 587명','https://tabelog.com/kyoto/A2601/A260403/26025913/','','도게츠교 북쪽 강변 · 따뜻한 카페라테 추천 · 안내 영업시간 09:00–18:00, 임시휴무 재확인 · 포장 위주·실내 좌석 보장 없음 · 금각사 이동을 선택하면 대기 10분 이상일 때 생략 · 대기 제외 10–15분'],
+ inarifutaba:['이나리 후타바','いなりふたば','콩 다이후쿠·일본 찹쌀떡','¥300–800 예상','3.65 / 400명','https://tabelog.com/kyoto/A2601/A260601/26007559/','','11/30 오사카 이동 전, 후시미이나리 관람 후 선택 · 콩이 들어간 다이후쿠 추천 · 09:00–18:00, 수·목 휴무 · 포장 전용·현금 준비 · 매진 가능·당일 먹을 소량만 구매 · 대기 제외 5–10분 · 출마치 후타바 본점과 다른 매장'],
  suzuki:['돈카츠 스즈키','とんかつ 寿々木','돈카츠 정식','¥2,000–3,000','3.53 / 859명','https://tabelog.com/tokyo/A1302/A130201/13155684/','tonkatsu','도쿄역 야에스'],
  rokurin:['로쿠린샤','六厘舎','츠케멘','¥1,200–2,000','3.77 / 7,820명','https://tabelog.com/tokyo/A1302/A130201/13093047/','tsukemen','생선·돼지 육수'],
  ikaruga:['도쿄역 이카루가','東京駅 斑鳩','라멘','¥1,200–2,000','3.63 / 3,277명','https://tabelog.com/tokyo/A1302/A130201/13124609/','ramen','도쿄역 라멘스트리트'],
@@ -212,6 +218,17 @@ function mealsForDay(id){
  Object.entries(extra).forEach(([label,ids])=>{if(!groups.some(m=>m[0]===label))groups.push([label,[...new Set(ids)]])});
  return groups;
 }
+const snackImages={kasagi:'wagashi-illustration.svg',kagizen:'wagashi-illustration.svg',shinpachi:'gelato-illustration.svg',inarifutaba:'wagashi-illustration.svg'};
+Object.assign(foodCell,{arabica:15});
+const snackStops={
+ '2026-11-28':[{id:'kagizen',time:'14:30경 · 선택',where:'점심 후 기온 → 히가시야마로 이동하기 전',tip:'기온에서 쉬고 싶을 때 20–30분. 니넨자카를 먼저 보고 싶으면 가사기야로 대신 선택.'},{id:'kasagi',time:'15:30경 · 선택',where:'15:15 니넨자카·산넨자카 산책 → 16:30 기요미즈데라 사이',tip:'산책 중 20–30분 휴식. 가기젠과 둘 다 들르기보다 한 곳만 고르고, 기요미즈데라 관람 시간을 우선.'}],
+ '2026-11-29':[{id:'shinpachi',time:'13:45경 · 선택',where:'아라시야마 점심 → 14:00 도게츠교 사이',tip:'도게츠교 북쪽 입구에서 10–15분. 추우면 젤라토를 건너뛰고 따뜻한 커피 선택.'},{id:'arabica',time:'14:00경 · 선택',where:'도게츠교 주변 강변 → 금각사 선택 이동 전',tip:'포장 커피 10–15분. 14:25 금각사 이동을 유지하면 긴 줄은 건너뛰고, 금각사를 생략하면 강변 휴식 시간을 늘리기.'}],
+ '2026-11-30':[{id:'inarifutaba',time:'11:40경 · 선택',where:'후시미이나리 관람 후 → 12:05 도후쿠지 선택 관람 전',tip:'교토 오전 간식입니다. 구매·주변 이동 10–15분 여유를 보고 선택하고, 관람·이동이 늦어지면 생략. 오사카 저녁과는 별도.'}]
+};
+function renderSnacks(d,compact=false){
+ const stops=snackStops[d.id];if(!stops)return '';
+ return '<section class="panel" aria-label="'+esc(d.label)+' 관광 사이 간식"><div class="panelpad"><h3>관광 사이 간식·휴식 · 선택</h3><p class="hint">모두 방문하는 일정이 아닙니다. 배고픔·날씨·대기 상황에 따라 한 곳씩 고르세요. 시간은 기존 관광 사이의 제안이며 이동·대기시간은 현장에 따라 달라집니다. 점수 3.5 이상·리뷰어 200명 이상으로 선정했습니다. 영업시간과 가격은 방문 전 재확인하세요.</p>'+stops.map(s=>'<div class="meal"><h4>'+esc(s.time)+' · '+esc(R[s.id][0])+'</h4><p class="snack-route">'+esc(s.where)+'<br>'+esc(s.tip)+'</p>'+(compact?'<p class="muted">'+esc(R[s.id][2])+' · '+esc(R[s.id][3])+'</p>'+attrLink(R[s.id][1]+' 京都','Google Maps ↗'):mealCard(s.id,'京都'))+'</div>').join('')+'<p class="hint">걷거나 사찰 안에서 먹기보다 매장이 허용한 공간에서 먹고, 포장 쓰레기는 직접 챙겨 주세요.</p></div></section>';
+}
 const D=[
 {id:'2026-11-25',label:'11/25 수',city:'도쿄',color:'#147b89',title:'인천에서 도쿄로',intro:'저녁은 긴자 카츠카미 니 18:00 예약 완료. 입국 후 호텔에서 쉬고 17:45 식당 도착 목표로 이동합니다. 도쿄역 산책은 식사 후 선택입니다.',stay:'karaksa hotel colors Tokyo Yaesu',events:[
 ['06:50','인천공항 제1터미널 도착 목표','출발 3시간 전 여유','base','인천국제공항 제1터미널'],['09:50','파라타항공 WE0501 출발','인천 T1 → 나리타 T2 · A332','flight',''],['12:05','나리타 제2터미널 도착','입국·수하물에 약 90분 확보','flight','成田空港 第2ターミナル'],['13:40','N’EX로 도쿄역 이동','대기·승차·역내 이동 포함 약 90분','move','東京駅'],['15:15','호텔 이동·짐 맡기기','도쿄역 야에스 방면 도보 약 20분','move','karaksa hotel colors Tokyo Yaesu'],['15:40','가벼운 식사·간식','18:00 돈카츠 코스에 맞춰 과식하지 않기','meal',''],['16:30','호텔 휴식','','base',''],['17:05','택시로 긴자 식당 이동','대기·정체 포함 약 15–30분 예상 · 호텔 로비에서 택시 요청 · 교준빌딩으로','move','銀座6-8-7 交詢ビル'],['17:45','긴자 카츠카미 니 도착 목표','교준(交詢)빌딩 4층 · 엘리베이터로 이동 후 예약 확인 · 예약증의 도착 안내 우선','base','銀座かつかみ弐 銀座6-8-7'],['18:00','예약 완료 · 긴자 카츠카미 니','돈카츠 코스 저녁 · 사용자 확인 예약 · 코스·결제 조건은 예약증 기준','meal','銀座かつかみ弐 銀座6-8-7'],['20:00경','식사 후 호텔 복귀 (예상)','코스 약 2시간을 가정한 계획 · 택시 약 15–30분 예상 · 실제 종료에 따라 조정','move','karaksa hotel colors Tokyo Yaesu'],['식사 후 선택','긴자→도쿄역·마루노우치 산책','기본 호텔 복귀 대신 선택 · 식당→도쿄역 도보 약 25–35분 예상 · 피곤하면 생략','option','東京駅 丸の内']],transport:'나리타 T2 입국장 → Railways/JR 표지판 → 공항 제2빌딩역에서 도쿄역행 N’EX 지정석 구매 → 도쿄역 하차 → Yaesu/八重洲 표지판 → 호텔. 항공 지연을 고려해 N’EX는 입국 후 구매하는 계획입니다. 저녁은 18:00 긴자 카츠카미 니 예약 완료. 호텔에서 17:05경 택시로 교준빌딩 이동, 17:45 도착 목표. 식사 후 기본은 택시로 호텔 복귀, 마루노우치 산책은 선택입니다.',rain:'식사 전후 야외 산책 생략. 호텔에서 쉬고 17:05경 택시로 식당 이동, 17:45 도착 목표. 식사 후에도 택시로 호텔 복귀.'},
@@ -275,7 +292,7 @@ function mealCard(id,city){
  const recommended=tokyo30Recommended.has(id),badge=recommended?'<span class="food-source">도쿄 30끼 추천</span>':'';
  const atlas=Object.hasOwn(tokyo30FoodCell,id)?'tokyo30':'food',imageCell=atlas==='tokyo30'?tokyo30FoodCell[id]:cell;
  const imageLabel=(id==='grill'?'스테이크 일러스트':r[2]+' 음식 일러스트')+(recommended?' · 도쿄 30끼 추천':'');
- const media=id==='grill'||id==='daruma'?'<div class="foodmedia '+(id==='grill'?'steak':'kushikatsu')+'" role="img" aria-label="'+esc(imageLabel)+'">'+badge+'</div>':'<div class="foodmedia atlas" data-atlas="'+atlas+'" data-cell="'+imageCell+'" role="img" aria-label="'+esc(imageLabel)+'">'+badge+'</div>';
+ const media=snackImages[id]?'<div class="foodmedia snack"><img src="./'+esc(snackImages[id])+'" alt="'+esc(imageLabel)+'" loading="lazy"></div>':id==='grill'||id==='daruma'?'<div class="foodmedia '+(id==='grill'?'steak':'kushikatsu')+'" role="img" aria-label="'+esc(imageLabel)+'">'+badge+'</div>':'<div class="foodmedia atlas" data-atlas="'+atlas+'" data-cell="'+imageCell+'" role="img" aria-label="'+esc(imageLabel)+'">'+badge+'</div>';
  const detailsButton=recommended?'<button type="button" class="food-detail-open" data-restaurant-details="'+esc(id)+'" aria-haspopup="dialog" aria-controls="restaurant-detail" aria-label="'+esc(r[0])+' 도쿄 30끼 추천 메뉴와 팁 보기">추천 메뉴·팁 보기 ＋</button>':'';
  const phoneLink=id==='kanekobbq'?'<a href="tel:+81364154129" aria-label="야키니쿠 카네코 전화 예약 +81 3 6415 4129">전화 예약 ↗</a>':id==='daruma'?'<a href="tel:+81662132033" aria-label="다루마 난바 본점 전화 문의 +81 6 6213 2033">전화 문의 ↗</a>':'';
  return '<article class="food'+(recommended?' has-details':'')+'" data-restaurant="'+esc(id)+'">'+media+'<div class="foodbody"><strong>'+esc(r[0])+'</strong><span class="jp" lang="ja">'+esc(r[1])+'</span><span class="meta">'+esc(r[2])+' · '+esc(r[3])+'</span><span class="meta">타베로그 '+esc(r[4])+'</span><span class="notes">'+esc(r[7])+'</span>'+detailsButton+'<div class="foodlinks"><a href="'+r[5]+'" target="_blank" rel="noopener noreferrer">타베로그</a><a href="'+maps(r[1]+' '+city)+'" target="_blank" rel="noopener noreferrer">Google Maps</a>'+phoneLink+'</div></div></article>'
@@ -380,6 +397,8 @@ function render(){
  const ml=mealsForDay(d.id);
  document.getElementById('foodview').innerHTML='<div class="panel"><div class="panelpad"><h3>'+d.label+' 식사 후보</h3><p class="hint">각 끼니의 후보 중 1곳을 고르세요. 기존 5곳에 날짜·동선에 맞는 추가 후보를 함께 표시했습니다. 점수·리뷰어 수는 2026년 10월 확인 자료이며 영업시간·가격은 방문 전 재확인이 필요합니다. 음식 종류를 일러스트로 구분했습니다. 같은 후보가 여러 끼니에 반복될 수 있으며 위치·영업시간은 선택 전에 꼭 확인하세요.</p>'+(d.id==='2026-11-25'?'<div class="note">저녁 확정: 긴자 카츠카미 니 · 18:00 예약 완료 · 17:45 도착 목표. 아래 다른 저녁 후보는 참고용이며 예약 식사와 중복으로 계획하지 않습니다.</div>':'')+(tokyo30Meals[d.id]?'<div class="note">노란색 ‘도쿄 30끼 추천’은 자료에서 선정한 식당입니다. 이 후보에는 기존 타베로그 평점·리뷰어 수 제한을 적용하지 않았습니다. 예약·연령 제한·흡연 안내와 우회 이동 여부를 확인한 뒤 선택하세요.</div>':'')+(!ml.length?'<div class="note">귀국일은 호텔 조식 또는 간단한 아침을 계획했습니다. 이용 가능 시간은 호텔에서 확인해 주세요.</div>':ml.map(m=>'<div class="meal"><h4>'+esc(m[0])+' · '+m[1].length+'곳</h4><div class="foodgrid">'+m[1].map(id=>mealCard(id,d.city)).join('')+'</div></div>').join(''))+'</div></div>';
  document.getElementById('transitview').innerHTML=renderTransit(d);
+ document.getElementById('schedule').innerHTML+=renderSnacks(d,true);
+ document.getElementById('foodview').innerHTML+=renderSnacks(d);
  document.getElementById('hotelsview').innerHTML='<div class="panel"><div class="panelpad"><h3>숙소 3곳</h3>'+H.map(h=>'<div class="meal"><strong>'+esc(h[0])+' · '+esc(h[3])+'</strong><p class="stay">'+esc(h[1])+'</p><p class="muted">'+esc(h[4])+'</p><a class="pill" href="'+maps(h[2])+'" target="_blank" rel="noopener noreferrer">Google Maps 열기 ↗</a></div>').join('')+'</div></div>';
  document.getElementById('checkview').innerHTML='<div class="panel"><div class="panelpad"><h3>출발 전 준비</h3><p class="hint">체크 상태는 이 기기에만 저장됩니다.</p>'+todo.map((t,i)=>'<div class="check"><input type="checkbox" id="t'+i+'" data-todo="'+i+'" '+(localStorage.getItem('tripTodo'+i)==='1'?'checked':'')+'><label for="t'+i+'"><strong>'+esc(t[0])+' · '+esc(t[1])+'</strong><small>'+esc(t[2])+'</small></label></div>').join('')+'</div></div>';
  document.querySelectorAll('#dates button').forEach(b=>b.addEventListener('click',()=>{current=Number(b.dataset.day);render();window.scrollTo(0,0)}));
