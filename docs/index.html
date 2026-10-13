@@ -124,7 +124,7 @@ body.restaurant-modal-open{overflow:hidden}
 <button data-view="schedule" aria-current="true"><b>◷</b>일정</button><button data-view="foodview"><b>☷</b>식당</button><button data-view="transitview"><b>⇄</b>교통</button><button data-view="hotelsview"><b>⌂</b>숙소</button><button data-view="checkview"><b>☑</b>준비</button>
 </div></nav>
 <dialog id="restaurant-detail" class="restaurant-dialog" aria-labelledby="restaurant-detail-title" aria-describedby="restaurant-detail-source">
-<header class="restaurant-detail-head"><div><span class="kicker">도쿄 30끼 추천 · 자료 요약</span><h2 id="restaurant-detail-title"></h2><span id="restaurant-detail-jp" class="jp" lang="ja"></span><p id="restaurant-detail-source"></p></div><button type="button" id="restaurant-detail-close" class="restaurant-close" autofocus>닫기 ✕</button></header>
+<header class="restaurant-detail-head"><div><span id="restaurant-detail-label" class="kicker">추천 · 자료 요약</span><h2 id="restaurant-detail-title"></h2><span id="restaurant-detail-jp" class="jp" lang="ja"></span><p id="restaurant-detail-source"></p></div><button type="button" id="restaurant-detail-close" class="restaurant-close" autofocus>닫기 ✕</button></header>
 <div id="restaurant-detail-body" class="restaurant-detail-body"></div>
 </dialog>
 <script src="./tokyo30-details.js?v=20261009-recommendation-reasons"></script>
@@ -243,6 +243,23 @@ Object.assign(kyotoVideoPicks,{
  uokeya:{url:'https://www.youtube.com/watch?v=Vw6Ye5lp9Mo',reason:'삼나무 통에 담긴 장어밥을 세 가족이 나누어 먹는 교토다운 식사. 사용자가 확인한 영상 속 기온 장어집이며, 우오케가 정확히 3인분부터 있어 가족 구성과 맞습니다.',official:'https://www.yagenbori.co.jp/shop/u/',phone:'+81755519966'},
  moritaya:{url:'https://www.youtube.com/watch?v=Vw6Ye5lp9Mo&t=583s',reason:'와규를 간사이식 스키야키로 즐기고 싶은 날, 숙소 가까운 노포에서 여유 있게 식사할 후보. 사용자가 확인한 영상 속 키야마치점이며 교토역 지점으로 바꾸지 않았습니다.',official:'https://moritaya-kyoto.co.jp/restaurant/kiyamachi/',phone:'+81752315118'}
 });
+const kyotoVideoDetails={
+ kuchibashi:{channel:'@space_tamnik',title:'교토 6박 25끼 또먹고싶은 맛집정리',budget:'¥7,000–9,000 예상',note:'코스·1음료 필수 · 예약 미완료',source:['영상에서는 야키토리 코스의 구성이 좋고, 부위별로 맛있는 굽기로 내어주는 점을 추천했습니다.','영상의 코스 가격은 ¥6,000입니다. 현재 준비 정보의 ¥6,600과 구분하세요.'],basis:'영상 설명에서 확인한 내용을 요약했습니다.'},
+ kyounawa:{channel:'@uniyotravel',title:'다시 교토가도 무조건 갈 교토 맛집 총정리',budget:'¥4,000–6,000 예상',note:'히츠마부시 · 예약 미완료',source:['부드러운 장어 식사로 소개하며, 장어를 좋아하지 않아도 먹을 수 있을 만큼의 식감을 추천했습니다. 개인적인 감상이므로 가족의 취향과는 다를 수 있습니다.','다시 교토에 가도 방문하고 싶고, 한국에 돌아와서도 계속 생각나는 곳으로 히츠마부시를 소개했습니다.'],basis:'영상 설명의 재방문 의사와 음식 감상을 요약했습니다.'},
+ kiraku:{channel:'@space_tamnik',title:'교토 구글맵 맛집 평점 매기기',budget:'¥9,000–14,000 예상',note:'저녁 코스 후보 · 예약 미완료',source:['영상에서는 주말 점심 와규 히츠마부시의 안심·등심이 부드러운 점을 좋게 평가했습니다.','개인 평가 5/5는 주말 점심 메뉴에 대한 것입니다. 이번 일정의 저녁 코스에 대한 평가가 아니며, 저녁에 같은 메뉴를 주문할 수 있는지도 확인이 필요합니다.'],basis:'영상 설명의 평가 대상 메뉴를 구분했습니다. 유튜버 개인 평점은 타베로그 점수가 아닙니다.'},
+ inohanare:{channel:'나나제인, 똑똑한 여행',title:'또 가고 싶은 교토 맛집 10곳 【교토 3편】',budget:'¥1,500–2,800 예상',note:'예약 불가·현장 대기 · 저녁 후보',source:['전사 자료에서는 흰 간장 돼지고기 라멘의 깔끔한 국물과 검은 간장 와규 라멘의 진한 맛·불향을 구분해 소개합니다.','유자 껍질·토로로 다시마로 맛을 바꿔 먹는 방법과 슈마이도 소개합니다. 메뉴·제공 여부는 당일 확인하세요.'],basis:'영상의 보조 전사 자료에서 확인한 요약입니다. 원본 자막을 직접 확인한 인용은 아니며, 지점은 현재 매장 정보와 대조했습니다.'},
+ hikinikukyoto:{channel:'책쓰는 미식가',title:'교토 맛집 5곳 추천',budget:'¥2,000–3,500 예상',note:'WEB기장 미완료 · 현금 불가',source:['영상 설명에서 줄 서서 먹는 수제 숯불 함박집으로 교토점을 명시해 소개합니다.'],basis:'영상 설명과 사용자가 확인한 상호를 근거로 정리했습니다. 유튜버의 상세 감상·먹는 법은 확인하지 못해 덧붙이지 않았습니다.'},
+ gihey:{channel:'책쓰는 미식가',title:'교토 맛집 5곳 추천 · 00:50',budget:'¥2,500–3,500 예상',note:'50분제·10분 전 도착 · 예약 미완료',source:['영상 설명에서는 야사카신사 앞, 8대를 이어온 명품 쌀밥 전문점으로 소개합니다.'],basis:'영상 설명·챕터와 사용자가 확인한 상호를 근거로 정리했습니다. 와규 정식 선택과 예약 팁은 유튜버의 멘트가 아닌 현재 방문 준비 정보입니다.'},
+ uokeya:{channel:'책쓰는 미식가',title:'교토 맛집 5곳 추천',budget:'¥4,500–6,000 예상',note:'일본어 전화예약 · 월요일 휴무',source:['영상 설명에서 겐닌지 근처 기온의 장어덮밥집으로 소개합니다.'],basis:'영상 설명과 사용자가 확인한 상호를 근거로 정리했습니다. 영상의 미쉐린 언급은 현재 별을 확인하지 못했으므로 현행 등급으로 표시하지 않습니다.'},
+ moritaya:{channel:'책쓰는 미식가',title:'교토 맛집 5곳 추천 · 09:43',budget:'¥9,000–15,000 예상',note:'서비스료 10% 포함 계획 · 예약 미완료',source:['영상 설명에서 160년 역사를 지닌 간사이식 스키야키 노포로 소개합니다. 사용자가 확인한 방문 지점은 키야마치점입니다.'],basis:'영상 설명·챕터와 사용자가 확인한 지점을 근거로 정리했습니다. 가격·예약·관광 시간 조정은 아래의 현재 방문 준비 정보입니다.'}
+};
+function kyotoVideoSummaryHTML(id){
+ const pick=kyotoVideoPicks[id],detail=kyotoVideoDetails[id],r=R[id];
+ if(!pick||!detail||!r)return '';
+ const section=(title,items)=>'<section class="restaurant-detail-section"><h3>'+esc(title)+'</h3><ul>'+items.map(item=>'<li>'+esc(item)+'</li>').join('')+'</ul></section>';
+ const link=(url,label)=>'<a href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">'+esc(label)+' ↗</a>';
+ return section('유튜버가 소개한 추천 포인트·팁',detail.source)+'<div class="note">'+esc(detail.basis)+' 직접 인용 아님. 영상 소개 당시와 현재 메뉴·가격·영업 조건은 다를 수 있습니다.</div>'+section('우리 일정에서 고려할 이유',[pick.reason])+'<section class="restaurant-current"><h3>현재 방문 준비 · 메뉴·가격·예약·결제·동선</h3><p><strong>1인 예상 예산:</strong> '+esc(r[3])+'</p>'+section('방문 전 확인할 사항',r[7].split(' · '))+'<small>2026년 10월에 정리한 매장 정보와 가족 일정 안내입니다. 유튜버의 직접 발언이 아니며, 실제 방문 전 매장에 다시 확인하세요.</small></section><div class="restaurant-detail-links">'+link(pick.url,'추천 영상')+link(r[5],'타베로그 안내')+link(maps(r[1]+' 교토'),'Google Maps')+(pick.official?link(pick.official,'공식 안내'):'')+(pick.phone?'<a href="tel:'+esc(pick.phone)+'">전화 문의 '+esc(pick.phone)+' ↗</a>':'')+'</div>';
+}
 const userKyotoVideos=[
  ['DKs679DHBO4','미미묭 · 1일 8끼 찐맛집 루트','기존 검토 영상 재확인: 이노다·아라비카 유지, HANANA·빵과 에스프레소는 평점 미달, 우즈라야는 리뷰어 수 미달. 세부 목록은 조사 기록에 표시'],
  ['258uM0i902s','나나제인 · 또 가고 싶은 교토 맛집 10곳','사용자 지정으로 게시 연도 제한과 별개로 검토. 이노이치 하나레를 11/28·29 저녁에 추가. 철학의 길 우동은 현재 관광 동선 밖이며 상호 불명확 방문지는 확인 보류'],
@@ -343,16 +360,15 @@ function applyAtlas(){
 function mealCard(id,city){
  const r=R[id],cell=foodCell[id]??15;
  const videoPick=kyotoVideoPicks[id];
- const recommended=tokyo30Recommended.has(id),badge=recommended?'<span class="food-source">도쿄 30끼 추천</span>':videoPick?'<span class="food-source kyoto-source">교토 영상 추천</span>':'';
+ const recommended=tokyo30Recommended.has(id),hasDetails=recommended||!!videoPick,badge=recommended?'<span class="food-source">도쿄 30끼 추천</span>':videoPick?'<span class="food-source kyoto-source">유튜브 추천</span>':'';
  const atlas=Object.hasOwn(tokyo30FoodCell,id)?'tokyo30':'food',imageCell=atlas==='tokyo30'?tokyo30FoodCell[id]:cell;
  const imageLabel=(id==='grill'?'스테이크 일러스트':r[2]+' 음식 일러스트')+(recommended?' · 도쿄 30끼 추천':'');
  const media=snackImages[id]?'<div class="foodmedia snack"><img src="./'+esc(snackImages[id])+'" alt="'+esc(imageLabel)+'" loading="lazy"></div>':id==='grill'||id==='daruma'?'<div class="foodmedia '+(id==='grill'?'steak':'kushikatsu')+'" role="img" aria-label="'+esc(imageLabel)+'">'+badge+'</div>':'<div class="foodmedia atlas" data-atlas="'+atlas+'" data-cell="'+imageCell+'" role="img" aria-label="'+esc(imageLabel)+'">'+badge+'</div>';
- const detailsButton=recommended?'<button type="button" class="food-detail-open" data-restaurant-details="'+esc(id)+'" aria-haspopup="dialog" aria-controls="restaurant-detail" aria-label="'+esc(r[0])+' 도쿄 30끼 추천 메뉴와 팁 보기">추천 메뉴·팁 보기 ＋</button>':'';
+ const detailsButton=hasDetails?'<button type="button" class="food-detail-open" data-restaurant-details="'+esc(id)+'" aria-haspopup="dialog" aria-controls="restaurant-detail" aria-label="'+esc(r[0])+' '+(videoPick?'유튜브':'도쿄 30끼')+' 추천 메뉴와 팁 보기">추천 메뉴·팁 보기 ＋</button>':'';
  const phoneLink=id==='kanekobbq'?'<a href="tel:+81364154129" aria-label="야키니쿠 카네코 전화 예약 +81 3 6415 4129">전화 예약 ↗</a>':id==='daruma'?'<a href="tel:+81662132033" aria-label="다루마 난바 본점 전화 문의 +81 6 6213 2033">전화 문의 ↗</a>':videoPick?.phone?'<a href="tel:'+esc(videoPick.phone)+'">전화 문의 ↗</a>':'';
- const videoReason=videoPick?'<blockquote class="video-reason">'+esc(videoPick.reason)+'<small>영상의 추천 취지를 요약한 설명 · 직접 인용 아님</small></blockquote>':'';
- const videoLinks=videoPick?'<a href="'+esc(videoPick.url)+'" target="_blank" rel="noopener noreferrer">추천 영상 ↗</a>'+(videoPick.official?'<a href="'+esc(videoPick.official)+'" target="_blank" rel="noopener noreferrer">공식 안내 ↗</a>':''):'';
+ const brief=videoPick?kyotoVideoDetails[id]:null;
  const foodCity=['kyounawa','hikinikukyoto','inohanare','gihey','uokeya','moritaya'].includes(id)?'교토':city;
- return '<article class="food'+(recommended?' has-details':'')+'" data-restaurant="'+esc(id)+'">'+media+'<div class="foodbody"><strong>'+esc(r[0])+'</strong><span class="jp" lang="ja">'+esc(r[1])+'</span><span class="meta">'+esc(r[2])+' · '+esc(r[3])+'</span><span class="meta">타베로그 '+esc(r[4])+'</span>'+videoReason+'<span class="notes">'+esc(r[7])+'</span>'+detailsButton+'<div class="foodlinks"><a href="'+r[5]+'" target="_blank" rel="noopener noreferrer">타베로그</a><a href="'+maps(r[1]+' '+foodCity)+'" target="_blank" rel="noopener noreferrer">Google Maps</a>'+phoneLink+videoLinks+'</div></div></article>'
+ return '<article class="food'+(hasDetails?' has-details':'')+'" data-restaurant="'+esc(id)+'">'+media+'<div class="foodbody"><strong>'+esc(r[0])+'</strong><span class="jp" lang="ja">'+esc(r[1])+'</span><span class="meta">'+esc(r[2])+' · '+esc(brief?brief.budget:r[3])+'</span><span class="meta">타베로그 '+esc(r[4])+'</span><span class="notes">'+esc(brief?brief.note:r[7])+'</span>'+detailsButton+'<div class="foodlinks"><a href="'+r[5]+'" target="_blank" rel="noopener noreferrer">타베로그</a><a href="'+maps(r[1]+' '+foodCity)+'" target="_blank" rel="noopener noreferrer">Google Maps</a>'+(videoPick?'':phoneLink)+'</div></div></article>'
 }
 function renderKyotoVideoResearch(d){
  if(!['2026-11-28','2026-11-29','2026-11-30'].includes(d.id))return '';
@@ -374,12 +390,14 @@ function restaurantSummaryHTML(id){
 }
 function openRestaurantDetails(id,trigger){
  const detail=tokyo30Details[id],r=R[id],dialog=document.getElementById('restaurant-detail');
- if(!detail||!r||!tokyo30Recommended.has(id))return false;
+ const videoPick=kyotoVideoPicks[id];
+ if(!r||(!videoPick&&(!detail||!tokyo30Recommended.has(id))))return false;
  restaurantDetailTrigger=trigger||document.activeElement;
  document.getElementById('restaurant-detail-title').textContent=r[0];
  document.getElementById('restaurant-detail-jp').textContent=r[1];
- document.getElementById('restaurant-detail-source').textContent='출처: 도쿄 30끼 · 자료 '+detail.pages+'쪽 · 2025년 9월 기준 안내';
- document.getElementById('restaurant-detail-body').innerHTML=restaurantSummaryHTML(id);
+ document.getElementById('restaurant-detail-label').textContent=videoPick?'유튜브 추천 · 영상 요약':'도쿄 30끼 추천 · 자료 요약';
+ document.getElementById('restaurant-detail-source').textContent=videoPick?'출처: '+kyotoVideoDetails[id].channel+' · '+kyotoVideoDetails[id].title:'출처: 도쿄 30끼 · 자료 '+detail.pages+'쪽 · 2025년 9월 기준 안내';
+ document.getElementById('restaurant-detail-body').innerHTML=videoPick?kyotoVideoSummaryHTML(id):restaurantSummaryHTML(id);
  if(!dialog.open)dialog.showModal();
  dialog.scrollTop=0;
  document.body.classList.add('restaurant-modal-open');
