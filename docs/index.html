@@ -483,8 +483,6 @@ function render(){
  document.getElementById('transitview').innerHTML=renderTransit(d);
  document.getElementById('schedule').innerHTML+=renderSnacks(d,true);
  document.getElementById('foodview').innerHTML+=renderSnacks(d);
- document.getElementById('foodview').innerHTML+=renderKyotoVideoResearch(d);
- document.getElementById('foodview').innerHTML+=renderUserKyotoVideos(d);
  document.getElementById('hotelsview').innerHTML='<div class="panel"><div class="panelpad"><h3>숙소 3곳</h3>'+H.map(h=>'<div class="meal"><strong>'+esc(h[0])+' · '+esc(h[3])+'</strong><p class="stay">'+esc(h[1])+'</p><p class="muted">'+esc(h[4])+'</p><a class="pill" href="'+maps(h[2])+'" target="_blank" rel="noopener noreferrer">Google Maps 열기 ↗</a></div>').join('')+'</div></div>';
  document.getElementById('checkview').innerHTML='<div class="panel"><div class="panelpad"><h3>출발 전 준비</h3><p class="hint">체크 상태는 이 기기에만 저장됩니다.</p>'+todo.map((t,i)=>'<div class="check"><input type="checkbox" id="t'+i+'" data-todo="'+i+'" '+(localStorage.getItem('tripTodo'+i)==='1'?'checked':'')+'><label for="t'+i+'"><strong>'+esc(t[0])+' · '+esc(t[1])+'</strong><small>'+esc(t[2])+'</small></label></div>').join('')+'</div></div>';
  document.querySelectorAll('#dates button').forEach(b=>b.addEventListener('click',()=>{current=Number(b.dataset.day);render();window.scrollTo(0,0)}));
