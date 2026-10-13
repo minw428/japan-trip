@@ -1,9 +1,8 @@
-const CACHE='japan-trip-2026-v34-lature-french';
+const CACHE='japan-trip-2026-v35-remove-lature';
 const KUSHIKATSU_ASSET='./kushikatsu-caricature.jpg';
 const SHELL=['./','./index.html','./tokyo30-details.js','./manifest.webmanifest','./icon.svg','./icon-192.png','./icon-512.png','./food-illustrations.png','./tokyo30-food-illustrations.png','./day-atlas.png','./grill-grand-steak.jpg'];
 SHELL.push('./kyoto-video-review.html');
 SHELL.push('./restaurant-locations.js');
-SHELL.push('./french-course-caricature.jpg');
 SHELL.push(KUSHIKATSU_ASSET,'./wagashi-caricature.jpg','./gelato-caricature.jpg',...['tsujihan','kaneko','bairin','katsukami2','hikiniku','toritake','newtorigin','kyubey','misaki','moheji','bazoku','ginzatei','sama','bincho','poppy'].map(id=>'./tokyo30-photos/'+id+'.jpg'));
 SHELL.push('./tokyo30-details.js?v=20261009-recommendation-reasons');
 self.addEventListener('install',event=>{

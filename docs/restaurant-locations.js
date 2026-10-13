@@ -982,6 +982,5 @@ Object.assign(restaurantLocations,{
  madrague:{latitude:35.012300656138656,longitude:135.75562634199613,name:'Kissa Madrague',source:'https://tabelog.com/en/kyoto/A2601/A260202/26019438/',checked:'2026-10-13'}
 });
 Object.assign(restaurantLocations,{
- lature:{latitude:35.66076694082051,longitude:139.70852977922843,name:'LATURE',source:'https://tabelog.com/en/tokyo/A1303/A130301/13198692/',checked:'2026-10-13'},
  yuji:{latitude:35.66258686870586,longitude:139.69733755424457,name:'Sumibi Yaki Yuji',source:'https://tabelog.com/en/tokyo/A1303/A130301/13001794/',checked:'2026-10-13'}
 });
