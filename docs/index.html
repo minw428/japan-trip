@@ -108,7 +108,8 @@ body.restaurant-modal-open{overflow:hidden}
 @media(min-width:600px){.dayhero{height:210px}.foodgrid{grid-template-columns:1fr 1fr}.food{grid-template-columns:104px 1fr}.panelpad{padding:23px}.event{grid-template-columns:72px 1fr}.flightbar{max-width:640px}.dates{padding-left:18px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 .food-stats{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:5px}.food-stats .meta{min-width:0;margin-top:0}
-.food-distance{display:block;flex:none;margin-left:auto;padding:3px 7px;background:#e8f3f4;color:#115e69;border-radius:7px;font-size:.73rem;font-weight:800;line-height:1.4;white-space:nowrap}
+.food-distance{display:inline-flex;align-items:center;flex:none;min-height:28px;margin-left:auto;padding:3px 7px;background:#e8f3f4;color:#115e69;border-radius:7px;font-size:.73rem;font-weight:800;line-height:1.4;white-space:nowrap;text-decoration:none;cursor:pointer}
+.food-distance:hover{background:#d3e8eb}
 .food-distance[hidden]{display:none}.food-distance.is-visible{animation:food-distance-fade-in .35s ease-out both}
 @keyframes food-distance-fade-in{from{opacity:0}to{opacity:1}}
 @media(prefers-reduced-motion:reduce){.food-distance.is-visible{animation:none}}
@@ -378,11 +379,25 @@ function foodDistanceText(id){
  if(!destination||!foodLocation.position||foodLocation.pending||foodLocation.error)return '';
  return formatFoodDistance(straightLineMeters(foodLocation.position,destination));
 }
+function foodDirectionsURL(id){
+ const destination=typeof restaurantLocations==='undefined'?null:restaurantLocations[id];
+ if(!destination)return '';
+ // Leave origin unset so Google Maps uses its own current device location.
+ return 'https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(destination.latitude+','+destination.longitude)+'&travelmode=walking';
+}
 function updateFoodDistances(){
  document.querySelectorAll('#foodview [data-food-distance]').forEach(el=>{
   const text=foodDistanceText(el.dataset.foodDistance);
   el.textContent=text;el.hidden=!text;
-  if(text)el.classList.add('is-visible');else el.classList.remove('is-visible');
+  if(text){
+   el.setAttribute('href',foodDirectionsURL(el.dataset.foodDistance));
+   el.setAttribute('aria-label',R[el.dataset.foodDistance][0]+'까지 Google Maps 도보 길찾기 · '+text);
+   el.setAttribute('title',text+' · 도보 길찾기 (표시 거리는 직선거리)');
+   el.classList.add('is-visible');
+  }else{
+   for(const attr of ['href','aria-label','title'])el.removeAttribute(attr);
+   el.classList.remove('is-visible');
+  }
  });
 }
 function refreshFoodLocation(){
@@ -415,7 +430,7 @@ function mealCard(id,city){
  const detailsButton=hasDetails?'<button type="button" class="food-detail-open" data-restaurant-details="'+esc(id)+'" aria-haspopup="dialog" aria-controls="restaurant-detail" aria-label="'+esc(r[0])+' '+(videoPick?'유튜브':'도쿄 30끼')+' 추천 메뉴와 팁 보기">추천 메뉴·팁 보기 ＋</button>':'';
  const phoneLink=id==='kanekobbq'?'<a href="tel:+81364154129" aria-label="야키니쿠 카네코 전화 예약 +81 3 6415 4129">전화 예약 ↗</a>':id==='daruma'?'<a href="tel:+81662132033" aria-label="다루마 난바 본점 전화 문의 +81 6 6213 2033">전화 문의 ↗</a>':videoPick?.phone?'<a href="tel:'+esc(videoPick.phone)+'">전화 문의 ↗</a>':'';
  const brief=videoPick?kyotoVideoDetails[id]:null;
- const distance='<span class="food-distance" data-food-distance="'+esc(id)+'" hidden></span>';
+ const distance='<a class="food-distance" target="_blank" rel="noopener noreferrer" data-food-distance="'+esc(id)+'" hidden></a>';
  const foodCity=['kyounawa','hikinikukyoto','inohanare','gihey','uokeya','moritaya'].includes(id)?'교토':city;
  return '<article class="food'+(hasDetails?' has-details':'')+'" data-restaurant="'+esc(id)+'">'+media+'<div class="foodbody"><strong>'+esc(r[0])+'</strong><span class="jp" lang="ja">'+esc(r[1])+'</span><span class="meta">'+esc(r[2])+' · '+esc(brief?brief.budget:r[3])+'</span><div class="food-stats"><span class="meta">타베로그 '+esc(r[4])+'</span>'+distance+'</div><span class="notes">'+esc(brief?brief.note:r[7])+'</span>'+detailsButton+'<div class="foodlinks"><a href="'+r[5]+'" target="_blank" rel="noopener noreferrer">타베로그</a><a href="'+maps(r[1]+' '+foodCity)+'" target="_blank" rel="noopener noreferrer">Google Maps</a>'+(videoPick?'':phoneLink)+'</div></div></article>'
 }
