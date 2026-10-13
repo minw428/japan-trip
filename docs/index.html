@@ -107,7 +107,8 @@ body.restaurant-modal-open{overflow:hidden}
 @media(max-width:390px){.trip-map-canvas{height:300px}.trip-map-head{padding:15px}.trip-map-footer{padding:11px}}
 @media(min-width:600px){.dayhero{height:210px}.foodgrid{grid-template-columns:1fr 1fr}.food{grid-template-columns:104px 1fr}.panelpad{padding:23px}.event{grid-template-columns:72px 1fr}.flightbar{max-width:640px}.dates{padding-left:18px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-.food-distance{display:block;width:fit-content;margin-top:6px;padding:3px 7px;background:#e8f3f4;color:#115e69;border-radius:7px;font-size:.73rem;font-weight:800;line-height:1.4}
+.food-stats{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:5px}.food-stats .meta{min-width:0;margin-top:0}
+.food-distance{display:block;flex:none;margin-left:auto;padding:3px 7px;background:#e8f3f4;color:#115e69;border-radius:7px;font-size:.73rem;font-weight:800;line-height:1.4;white-space:nowrap}
 .food-distance[hidden]{display:none}.food-distance.is-visible{animation:food-distance-fade-in .35s ease-out both}
 @keyframes food-distance-fade-in{from{opacity:0}to{opacity:1}}
 @media(prefers-reduced-motion:reduce){.food-distance.is-visible{animation:none}}
@@ -375,7 +376,7 @@ function formatFoodDistance(meters){
 function foodDistanceText(id){
  const destination=typeof restaurantLocations==='undefined'?null:restaurantLocations[id];
  if(!destination||!foodLocation.position||foodLocation.pending||foodLocation.error)return '';
- return '현재 위치에서 '+formatFoodDistance(straightLineMeters(foodLocation.position,destination));
+ return formatFoodDistance(straightLineMeters(foodLocation.position,destination));
 }
 function updateFoodDistances(){
  document.querySelectorAll('#foodview [data-food-distance]').forEach(el=>{
@@ -416,7 +417,7 @@ function mealCard(id,city){
  const brief=videoPick?kyotoVideoDetails[id]:null;
  const distance='<span class="food-distance" data-food-distance="'+esc(id)+'" hidden></span>';
  const foodCity=['kyounawa','hikinikukyoto','inohanare','gihey','uokeya','moritaya'].includes(id)?'교토':city;
- return '<article class="food'+(hasDetails?' has-details':'')+'" data-restaurant="'+esc(id)+'">'+media+'<div class="foodbody"><strong>'+esc(r[0])+'</strong><span class="jp" lang="ja">'+esc(r[1])+'</span><span class="meta">'+esc(r[2])+' · '+esc(brief?brief.budget:r[3])+'</span><span class="meta">타베로그 '+esc(r[4])+'</span>'+distance+'<span class="notes">'+esc(brief?brief.note:r[7])+'</span>'+detailsButton+'<div class="foodlinks"><a href="'+r[5]+'" target="_blank" rel="noopener noreferrer">타베로그</a><a href="'+maps(r[1]+' '+foodCity)+'" target="_blank" rel="noopener noreferrer">Google Maps</a>'+(videoPick?'':phoneLink)+'</div></div></article>'
+ return '<article class="food'+(hasDetails?' has-details':'')+'" data-restaurant="'+esc(id)+'">'+media+'<div class="foodbody"><strong>'+esc(r[0])+'</strong><span class="jp" lang="ja">'+esc(r[1])+'</span><span class="meta">'+esc(r[2])+' · '+esc(brief?brief.budget:r[3])+'</span><div class="food-stats"><span class="meta">타베로그 '+esc(r[4])+'</span>'+distance+'</div><span class="notes">'+esc(brief?brief.note:r[7])+'</span>'+detailsButton+'<div class="foodlinks"><a href="'+r[5]+'" target="_blank" rel="noopener noreferrer">타베로그</a><a href="'+maps(r[1]+' '+foodCity)+'" target="_blank" rel="noopener noreferrer">Google Maps</a>'+(videoPick?'':phoneLink)+'</div></div></article>'
 }
 function renderKyotoVideoResearch(d){
  if(!['2026-11-28','2026-11-29','2026-11-30'].includes(d.id))return '';
