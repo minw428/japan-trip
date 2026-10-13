@@ -108,8 +108,6 @@ body.restaurant-modal-open{overflow:hidden}
 @media(min-width:600px){.dayhero{height:210px}.foodgrid{grid-template-columns:1fr 1fr}.food{grid-template-columns:104px 1fr}.panelpad{padding:23px}.event{grid-template-columns:72px 1fr}.flightbar{max-width:640px}.dates{padding-left:18px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 .food-distance{display:block;width:fit-content;margin-top:6px;padding:3px 7px;background:#e8f3f4;color:#115e69;border-radius:7px;font-size:.73rem;font-weight:800;line-height:1.4}
-.food-location-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 12px;font-size:.75rem;color:var(--muted)}
-.food-location-bar span{min-width:0;overflow-wrap:anywhere}.food-location-bar button{flex:none;min-height:44px;padding:7px 11px;border:1px solid var(--line);border-radius:10px;background:white;color:var(--ink);font-size:.75rem;font-weight:750}.food-location-bar button:disabled{opacity:.5;cursor:default}
 </style>
 </head>
 <body>
@@ -362,7 +360,7 @@ function applyAtlas(){
  });
 }
 // Device location stays in memory only. Restaurant coordinates are bundled offline.
-const foodLocation={position:null,pending:false,error:'',denied:false};
+const foodLocation={position:null,pending:false,error:'',denied:false,requestId:0};
 function straightLineMeters(a,b){
  const rad=n=>n*Math.PI/180,dlat=rad(b.latitude-a.latitude),dlon=rad(b.longitude-a.longitude);
  const h=Math.sin(dlat/2)**2+Math.cos(rad(a.latitude))*Math.cos(rad(b.latitude))*Math.sin(dlon/2)**2;
@@ -385,36 +383,22 @@ function foodDistanceText(id){
  if(foodLocation.error)return '거리 조회 불가';
  return '위치 허용 시 거리 표시';
 }
-function foodLocationStatus(){
- if(foodLocation.pending)return '현재 위치 확인 중…'+(foodLocation.position?' · 이전 거리 표시':'');
- if(foodLocation.error)return foodLocation.error+(foodLocation.position?' · 이전 위치 기준':'');
- if(foodLocation.position){
-  const p=foodLocation.position,time=new Date(p.timestamp).toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'});
-  return '직선거리 · '+time+' 갱신'+(p.accuracy>200?' · 위치 오차 약 '+formatFoodDistance(p.accuracy).replace('약 ',''):'');
- }
- return '위치를 허용하면 직선거리가 표시됩니다.';
-}
-function foodLocationBarHTML(){
- return '<div class="food-location-bar" aria-label="현재 위치에서 식당까지 거리"><span id="food-location-status" role="status" aria-live="polite">'+esc(foodLocationStatus())+'</span><button type="button" id="food-location-refresh" aria-label="현재 위치와 식당 거리 다시 조회" title="위치는 저장·전송하지 않고 기기에서 거리 계산에만 사용합니다."'+(foodLocation.pending?' disabled':'')+'>위치 갱신</button></div>';
-}
 function updateFoodDistances(){
  document.querySelectorAll('#foodview [data-food-distance]').forEach(el=>{el.textContent=foodDistanceText(el.dataset.foodDistance)});
- const status=document.getElementById('food-location-status');
- if(status)status.textContent=foodLocationStatus();
- const refresh=document.getElementById('food-location-refresh');
- if(refresh)refresh.disabled=foodLocation.pending;
 }
 function refreshFoodLocation(){
- if(foodLocation.pending)return;
+ const requestId=++foodLocation.requestId;
  if(!navigator.geolocation){foodLocation.error='이 브라우저는 위치 조회를 지원하지 않습니다.';updateFoodDistances();return}
  foodLocation.pending=true;foodLocation.error='';updateFoodDistances();
  const fail=error=>{
+  if(requestId!==foodLocation.requestId)return;
   foodLocation.pending=false;foodLocation.denied=error.code===1;
   if(foodLocation.denied)foodLocation.position=null;
   foodLocation.error=error.code===1?'위치 권한을 허용해 주세요.':error.code===3?'위치 조회 시간 초과 · 다시 시도해 주세요.':'위치 갱신 실패 · 다시 시도해 주세요.';
   updateFoodDistances();
  };
  try{navigator.geolocation.getCurrentPosition(position=>{
+  if(requestId!==foodLocation.requestId)return;
   const c=position.coords;
   if(!Number.isFinite(c.latitude)||!Number.isFinite(c.longitude)||Math.abs(c.latitude)>90||Math.abs(c.longitude)>180){fail({code:2});return}
   foodLocation.position={latitude:c.latitude,longitude:c.longitude,accuracy:c.accuracy,timestamp:position.timestamp||Date.now()};
@@ -548,8 +532,6 @@ function render(){
  document.getElementById('transitview').innerHTML=renderTransit(d);
  document.getElementById('schedule').innerHTML+=renderSnacks(d,true);
  document.getElementById('foodview').innerHTML+=renderSnacks(d);
- document.getElementById('foodview').innerHTML=foodLocationBarHTML()+document.getElementById('foodview').innerHTML;
- document.getElementById('food-location-refresh').addEventListener('click',refreshFoodLocation);
  if(document.getElementById('foodview').classList.contains('active'))refreshFoodLocation();
  document.getElementById('hotelsview').innerHTML='<div class="panel"><div class="panelpad"><h3>숙소 3곳</h3>'+H.map(h=>'<div class="meal"><strong>'+esc(h[0])+' · '+esc(h[3])+'</strong><p class="stay">'+esc(h[1])+'</p><p class="muted">'+esc(h[4])+'</p><a class="pill" href="'+maps(h[2])+'" target="_blank" rel="noopener noreferrer">Google Maps 열기 ↗</a></div>').join('')+'</div></div>';
  document.getElementById('checkview').innerHTML='<div class="panel"><div class="panelpad"><h3>출발 전 준비</h3><p class="hint">체크 상태는 이 기기에만 저장됩니다.</p>'+todo.map((t,i)=>'<div class="check"><input type="checkbox" id="t'+i+'" data-todo="'+i+'" '+(localStorage.getItem('tripTodo'+i)==='1'?'checked':'')+'><label for="t'+i+'"><strong>'+esc(t[0])+' · '+esc(t[1])+'</strong><small>'+esc(t[2])+'</small></label></div>').join('')+'</div></div>';
