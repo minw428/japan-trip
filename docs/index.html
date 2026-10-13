@@ -285,10 +285,20 @@ const userKyotoVideos=[
  ['258uM0i902s','나나제인 · 또 가고 싶은 교토 맛집 10곳','사용자 지정으로 게시 연도 제한과 별개로 검토. 이노이치 하나레를 11/28·29 저녁에 추가. 철학의 길 우동은 현재 관광 동선 밖이며 상호 불명확 방문지는 확인 보류'],
  ['Vw6Ye5lp9Mo','책쓰는 미식가 · 교토 맛집 5곳','사용자가 상호 확인: 히키니쿠토코메 교토·하치다이메 기헤이·기온 우오케야·모리타야 키야마치점 추가. 오료리 메나미는 사용자 요청으로 제외']
 ];
+// 4.0+ options stay within the Nov 27 route; timing/diet must be confirmed before choosing.
+Object.assign(R,{
+ lature:['라튀르','ラチュレ LATURE','프렌치·지비에 중심 5접시 점심 코스','¥9,000–12,000 예상','4.26 / 3,297명','https://tabelog.com/tokyo/A1303/A130301/13198692/','','조건 확인 전 선택 보류 · 예약 미완료 · 11:45 입점·13:15 퇴점 가능 여부와 딸의 해산물 대체를 사전 확인 · 평일 5접시 ¥7,800 + 서비스료10%, 음료 별도 · 시간·메뉴 조정 불가면 기존 후보 선택'],
+ yuji:['스미비야키 유우지','炭火焼 ゆうじ','소고기·내장 숯불 야키니쿠','¥8,000–12,000 예상','4.20 / 2,398명','https://tabelog.com/tokyo/A1303/A130301/13001794/','','조건 확인 전 선택 보류 · 전화예약·현금만 · 18:30 입점·20:00 퇴점 가능 여부 확인 (공식 예약 16시/18시 이후 2부제) · 내장 선호·16세 동반을 예약 시 전달 · 예약·시간이 안 맞으면 기존 후보 선택']
+});
+Object.assign(foodCell,{lature:11,yuji:10});
+const highRatedOptions={
+ lature:{official:'https://www.lature.jp/contents/category/lunch/',phone:'+81364505297'},
+ yuji:{official:'https://yakiniku-yuji.com/reserve/',phone:'+81334646448'}
+};
 const meals={
  '2026-11-25':[['늦은 점심',['suzuki','rokurin','ikaruga','kaneko','hanamaru']],['저녁',['kaneko','suzuki','rokurin','ikaruga','hanamaru']]],
  '2026-11-26':[['점심',['imahan','grill','urin','umikaze','kibun']],['저녁',['grill','imahan','urin','umikaze','kibun']]],
- '2026-11-27':[['점심',['tonkatsujp','junchan','menchira','burger','chao']],['저녁',['kanekobbq','kuroda','menchira','burger','chao','hanamaru']]],
+ '2026-11-27':[['점심',['tonkatsujp','junchan','menchira','burger','chao','lature']],['저녁',['kanekobbq','kuroda','menchira','burger','chao','hanamaru','yuji']]],
  '2026-11-28':[['점심',['gihey','kyounawa','hikinikukyoto','omen','ino','hafuu','smart','madrague']],['저녁',['shiki','moritaya','uokeya','gihey','kiraku','kuchibashi','kyounawa','hikinikukyoto','inohanare','roku','omen','ino','hafuu']]],
  '2026-11-29':[['아침',['yamamoto','smart','inoda','petit','walden']],['점심',['yoshimura','hirokawa','shoraian','saganoyu','omen']],['저녁',['shiki','moritaya','uokeya','gihey','kiraku','kuchibashi','kyounawa','hikinikukyoto','inohanare','omen','roku','ino','hafuu']]],
  '2026-11-30':[['아침',['yamamoto','smart','inoda','petit','walden']],['점심',['kyounawa','hikinikukyoto','omen','ino','hafuu','smart']],['저녁',['daruma','mizuno','fukutaro','imai','ippo','hide']]],
@@ -436,16 +446,18 @@ function refreshFoodLocation(){
 function mealCard(id,city){
  const r=R[id],cell=foodCell[id]??15;
  const videoPick=kyotoVideoPicks[id];
- const recommended=tokyo30Recommended.has(id),hasDetails=recommended||!!videoPick,badge=recommended?'<span class="food-source">도쿄 30끼 추천</span>':videoPick?'<span class="food-source kyoto-source">유튜브 추천</span>':'';
+ const highRated=highRatedOptions[id];
+ const recommended=tokyo30Recommended.has(id),hasDetails=recommended||!!videoPick,badge=recommended?'<span class="food-source">도쿄 30끼 추천</span>':videoPick?'<span class="food-source kyoto-source">유튜브 추천</span>':highRatedOptions[id]?'<span class="food-source" title="2026/10/13 확인한 타베로그 종합 평점">타베로그 4.0+</span>':'';
  const atlas=Object.hasOwn(tokyo30FoodCell,id)?'tokyo30':'food',imageCell=atlas==='tokyo30'?tokyo30FoodCell[id]:cell;
  const imageLabel=(id==='grill'?'스테이크 일러스트':r[2]+' 음식 일러스트')+(recommended?' · 도쿄 30끼 추천':'');
  const media=snackImages[id]?'<div class="foodmedia snack"><img src="./'+esc(snackImages[id])+'" alt="'+esc(imageLabel)+'" loading="lazy"></div>':id==='grill'||id==='daruma'?'<div class="foodmedia '+(id==='grill'?'steak':'kushikatsu')+'" role="img" aria-label="'+esc(imageLabel)+'">'+badge+'</div>':'<div class="foodmedia atlas" data-atlas="'+atlas+'" data-cell="'+imageCell+'" role="img" aria-label="'+esc(imageLabel)+'">'+badge+'</div>';
  const detailsButton=hasDetails?'<button type="button" class="food-detail-open" data-restaurant-details="'+esc(id)+'" aria-haspopup="dialog" aria-controls="restaurant-detail" aria-label="'+esc(r[0])+' '+(videoPick?'유튜브':'도쿄 30끼')+' 추천 메뉴와 팁 보기">추천 메뉴·팁 보기 ＋</button>':'';
  const phoneLink=id==='kanekobbq'?'<a href="tel:+81364154129" aria-label="야키니쿠 카네코 전화 예약 +81 3 6415 4129">전화 예약 ↗</a>':id==='daruma'?'<a href="tel:+81662132033" aria-label="다루마 난바 본점 전화 문의 +81 6 6213 2033">전화 문의 ↗</a>':videoPick?.phone?'<a href="tel:'+esc(videoPick.phone)+'">전화 문의 ↗</a>':'';
  const brief=videoPick?kyotoVideoDetails[id]:null;
+ const highLinks=highRated?'<a href="tel:'+esc(highRated.phone)+'">전화 문의</a><a href="'+esc(highRated.official)+'" target="_blank" rel="noopener noreferrer">공식 안내</a>':'';
  const distance='<a class="food-distance" target="_blank" rel="noopener noreferrer" data-food-distance="'+esc(id)+'" hidden></a>';
  const foodCity=['kyounawa','hikinikukyoto','inohanare','gihey','uokeya','moritaya','shiki','madrague'].includes(id)?'교토':city;
- return '<article class="food'+(hasDetails?' has-details':'')+'" data-restaurant="'+esc(id)+'">'+media+'<div class="foodbody"><strong>'+esc(r[0])+'</strong><span class="jp" lang="ja">'+esc(r[1])+'</span><span class="meta">'+esc(r[2])+' · '+esc(brief?brief.budget:r[3])+'</span><div class="food-stats"><span class="meta">타베로그 '+esc(r[4])+'</span>'+distance+'</div><span class="notes">'+esc(brief?brief.note:r[7])+'</span>'+detailsButton+'<div class="foodlinks"><a href="'+r[5]+'" target="_blank" rel="noopener noreferrer">타베로그</a><a href="'+maps(r[1]+' '+foodCity)+'" target="_blank" rel="noopener noreferrer">Google Maps</a>'+(videoPick?'':phoneLink)+'</div></div></article>'
+ return '<article class="food'+(hasDetails?' has-details':'')+'" data-restaurant="'+esc(id)+'">'+media+'<div class="foodbody"><strong>'+esc(r[0])+'</strong><span class="jp" lang="ja">'+esc(r[1])+'</span><span class="meta">'+esc(r[2])+' · '+esc(brief?brief.budget:r[3])+'</span><div class="food-stats"><span class="meta">타베로그 '+esc(r[4])+'</span>'+distance+'</div><span class="notes">'+esc(brief?brief.note:r[7])+'</span>'+detailsButton+'<div class="foodlinks"><a href="'+r[5]+'" target="_blank" rel="noopener noreferrer">타베로그</a><a href="'+maps(r[1]+' '+foodCity)+'" target="_blank" rel="noopener noreferrer">Google Maps</a>'+(videoPick?'':phoneLink)+highLinks+'</div></div></article>'
 }
 function renderKyotoVideoResearch(d){
  if(!['2026-11-28','2026-11-29','2026-11-30'].includes(d.id))return '';
