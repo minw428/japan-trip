@@ -977,3 +977,7 @@ const restaurantLocations={
     "checked": "2026-10-13"
   }
 };
+Object.assign(restaurantLocations,{
+ shiki:{latitude:35.001898937873605,longitude:135.76641366032644,name:'Udon Shiki Kyoto Udon',source:'https://tabelog.com/en/kyoto/A2601/A260201/26043904/',checked:'2026-10-13'},
+ madrague:{latitude:35.012300656138656,longitude:135.75562634199613,name:'Kissa Madrague',source:'https://tabelog.com/en/kyoto/A2601/A260202/26019438/',checked:'2026-10-13'}
+});

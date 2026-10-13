@@ -260,6 +260,19 @@ const kyotoVideoDetails={
  uokeya:{channel:'책쓰는 미식가',title:'교토 맛집 5곳 추천',budget:'¥4,500–6,000 예상',note:'일본어 전화예약 · 월요일 휴무',source:['영상 설명에서 겐닌지 근처 기온의 장어덮밥집으로 소개합니다.'],basis:'영상 설명과 사용자가 확인한 상호를 근거로 정리했습니다. 영상의 미쉐린 언급은 현재 별을 확인하지 못했으므로 현행 등급으로 표시하지 않습니다.'},
  moritaya:{channel:'책쓰는 미식가',title:'교토 맛집 5곳 추천 · 09:43',budget:'¥9,000–15,000 예상',note:'서비스료 10% 포함 계획 · 예약 미완료',source:['영상 설명에서 160년 역사를 지닌 간사이식 스키야키 노포로 소개합니다. 사용자가 확인한 방문 지점은 키야마치점입니다.'],basis:'영상 설명·챕터와 사용자가 확인한 지점을 근거로 정리했습니다. 가격·예약·관광 시간 조정은 아래의 현재 방문 준비 정보입니다.'}
 };
+Object.assign(R,{
+ shiki:['우동 시키 · 교토점','うどん しき 京都うどん','수제 우동·고기 가마타마·닭튀김','¥1,500–2,500 예상','3.55 / 210명','https://tabelog.com/kyoto/A2601/A260201/26043904/','udon','예약 없이 현장 방문 · 매장 상단 안내는 현재 신규 예약 중단이며 일반 예약 항목과 상충하므로 현장 방문을 기준으로 계획 · 마루야초415-23, 교토가와라마치역 도보 약8분·기온시조역 약13분 · 점심11:00–15:00/마지막 주문14:30, 저녁17:00–23:00/마지막 주문22:30, 방문일 영업 재확인 · 현재 등록 메뉴: 고기 가마타마 ¥1,300, 닭튀김·반숙달걀 우동 ¥1,350, 카레우동 ¥1,500 · 영상 소개 당시 고기 가마타마 ¥1,650·냄비 카레우동 ¥2,280과 구분하며 같은 메뉴·구성을 보장하지 않음 · 고기·닭고기 메뉴 선택 가능하나 생선 육수 포함 가능 · 카드·교통카드 가능·전면 금연 · 11/28 기온 관광 후 저녁 우선, 11/29도 저녁 선택 후보 · 11/29 에이칸도 야간 관람을 고르면 대기·식사 시간을 보고 출발 조정 또는 다른 후보 선택 · 075-746-5323'],
+ madrague:['킷사 마드라그 · 본점','喫茶 マドラグ','달걀 샌드위치·나폴리탄·커피','¥1,500–2,500 예상','3.71 / 1,107명','https://tabelog.com/kyoto/A2601/A260202/26019438/','','예약 미완료 · 가미마쓰야초706-5, 후지이다이마루점과 다른 본점 · 11/28 늦은 점심의 조건부 선택 후보, 기온 동선에서 북서쪽 우회 · 13:40 점심 계획에 맞는 예약 시각을 확인하고 15:15 히가시야마 관광 출발까지 식사·택시 이동을 마칠 수 있을 때만 선택 · 신칸센 지연·예약 불가·관광 시간 부족이면 산조·기온의 기존 후보 선택 · 전화 또는 현장 예약 우선, +81-75-744-0067 · 타베로그 안내: 점심12:00–18:00/마지막 주문17:00, 1시간 교대제·비정기 휴무 · 아침 영업08:00–11:00, 예약 시각08:00·09:30은 가족 성향·기존 출발 시간과 맞지 않아 조식 후보에는 넣지 않음 · 현금만 가능·전면 금연 · 영상 가격은 달걀 샌드위치 ¥1,180·나폴리탄 ¥1,100·커피 ¥600이며 현재 가격은 주문 전 확인 · 숙소에서 택시 약10–20분, 식후 히가시야마로 택시 약15–30분 예상·단풍철 정체 시 더 걸릴 수 있음']
+});
+Object.assign(foodCell,{shiki:7,madrague:15});
+Object.assign(kyotoVideoPicks,{
+ shiki:{url:'https://www.youtube.com/watch?v=dzHF_4_9OQ4',reason:'단풍 관광 후 따뜻한 수제 우동으로 식사하고 싶은 날의 후보. 고기 가마타마나 닭튀김 우동을 고를 수 있고, 기온 관광 후 시조 권역에서 저녁을 먹는 동선에 맞춰 선정했습니다.',official:'https://tabelog.com/kyoto/A2601/A260201/26043904/dtlmenu/',phone:'+81757465323'},
+ madrague:{url:'https://www.youtube.com/watch?v=dzHF_4_9OQ4',reason:'달걀 샌드위치와 나폴리탄, 커피로 식사와 휴식을 함께 즐기고 싶을 때. 본점 분위기를 경험하는 예비 후보이며, 관광보다 식사를 우선해 우회할 수 있는 날에만 선택하도록 했습니다.',phone:'+81757440067'}
+});
+Object.assign(kyotoVideoDetails,{
+ shiki:{channel:'MACSKADO / 妻と行くカフェ日記',title:'교토 런치 10선 · 화제의 가게부터 유명점까지',budget:'¥1,500–2,500 예상',note:'현장 방문 · 11/28·29 저녁 후보',source:['영상 설명에서 냄비 카레우동과 고기 가마타마를 소개했습니다. 소개 당시 가격은 각각 ¥2,280·¥1,650입니다.','현재 매장 등록 메뉴의 고기 가마타마 ¥1,300·카레우동 ¥1,500와 구분해야 합니다. 특히 영상의 냄비 카레우동과 현재 카레우동이 같은 구성이라고 보장하지 않습니다.'],basis:'2026/9/19 공개 영상의 설명에서 확인한 메뉴를 요약했습니다. 자막 본문은 확인하지 못해 유튜버의 상세 맛 평가·감탄은 임의로 덧붙이지 않았습니다.'},
+ madrague:{channel:'MACSKADO / 妻と行くカフェ日記',title:'교토 런치 10선 · 화제의 가게부터 유명점까지',budget:'¥1,500–2,500 예상',note:'예약 미완료 · 우회 늦은 점심(선택)',source:['영상에서는 코로나 달걀 샌드위치, 철판 나폴리탄과 커피·멜론소다를 소개했습니다.','영상 설명의 방문 팁은 예약 우선제이며 전화 또는 현장에서 접수할 수 있다는 것입니다. 영상 가격은 샌드위치 ¥1,180·나폴리탄 ¥1,100·커피 ¥600으로 현재 가격은 별도 확인이 필요합니다.'],basis:'2026/9/19 공개 영상의 설명과 현재 타베로그 본점 정보를 대조했습니다. 영상 속 본점을 다른 지점으로 바꾸지 않았으며, 확인하지 못한 개인 감상은 만들지 않았습니다.'}
+});
 function kyotoVideoSummaryHTML(id){
  const pick=kyotoVideoPicks[id],detail=kyotoVideoDetails[id],r=R[id];
  if(!pick||!detail||!r)return '';
@@ -276,8 +289,8 @@ const meals={
  '2026-11-25':[['늦은 점심',['suzuki','rokurin','ikaruga','kaneko','hanamaru']],['저녁',['kaneko','suzuki','rokurin','ikaruga','hanamaru']]],
  '2026-11-26':[['점심',['imahan','grill','urin','umikaze','kibun']],['저녁',['grill','imahan','urin','umikaze','kibun']]],
  '2026-11-27':[['점심',['tonkatsujp','junchan','menchira','burger','chao']],['저녁',['kanekobbq','kuroda','menchira','burger','chao','hanamaru']]],
- '2026-11-28':[['점심',['gihey','kyounawa','hikinikukyoto','omen','ino','hafuu','smart']],['저녁',['moritaya','uokeya','gihey','kiraku','kuchibashi','kyounawa','hikinikukyoto','inohanare','roku','omen','ino','hafuu']]],
- '2026-11-29':[['아침',['yamamoto','smart','inoda','petit','walden']],['점심',['yoshimura','hirokawa','shoraian','saganoyu','omen']],['저녁',['moritaya','uokeya','gihey','kiraku','kuchibashi','kyounawa','hikinikukyoto','inohanare','omen','roku','ino','hafuu']]],
+ '2026-11-28':[['점심',['gihey','kyounawa','hikinikukyoto','omen','ino','hafuu','smart','madrague']],['저녁',['shiki','moritaya','uokeya','gihey','kiraku','kuchibashi','kyounawa','hikinikukyoto','inohanare','roku','omen','ino','hafuu']]],
+ '2026-11-29':[['아침',['yamamoto','smart','inoda','petit','walden']],['점심',['yoshimura','hirokawa','shoraian','saganoyu','omen']],['저녁',['shiki','moritaya','uokeya','gihey','kiraku','kuchibashi','kyounawa','hikinikukyoto','inohanare','omen','roku','ino','hafuu']]],
  '2026-11-30':[['아침',['yamamoto','smart','inoda','petit','walden']],['점심',['kyounawa','hikinikukyoto','omen','ino','hafuu','smart']],['저녁',['daruma','mizuno','fukutaro','imai','ippo','hide']]],
  '2026-12-01':[['점심',['daruma','ajinoya','mizuno','imai','ippo','joroku']],['저녁',['daruma','ajinoya','fukutaro','imai','joroku','hide']]]
 };
@@ -431,7 +444,7 @@ function mealCard(id,city){
  const phoneLink=id==='kanekobbq'?'<a href="tel:+81364154129" aria-label="야키니쿠 카네코 전화 예약 +81 3 6415 4129">전화 예약 ↗</a>':id==='daruma'?'<a href="tel:+81662132033" aria-label="다루마 난바 본점 전화 문의 +81 6 6213 2033">전화 문의 ↗</a>':videoPick?.phone?'<a href="tel:'+esc(videoPick.phone)+'">전화 문의 ↗</a>':'';
  const brief=videoPick?kyotoVideoDetails[id]:null;
  const distance='<a class="food-distance" target="_blank" rel="noopener noreferrer" data-food-distance="'+esc(id)+'" hidden></a>';
- const foodCity=['kyounawa','hikinikukyoto','inohanare','gihey','uokeya','moritaya'].includes(id)?'교토':city;
+ const foodCity=['kyounawa','hikinikukyoto','inohanare','gihey','uokeya','moritaya','shiki','madrague'].includes(id)?'교토':city;
  return '<article class="food'+(hasDetails?' has-details':'')+'" data-restaurant="'+esc(id)+'">'+media+'<div class="foodbody"><strong>'+esc(r[0])+'</strong><span class="jp" lang="ja">'+esc(r[1])+'</span><span class="meta">'+esc(r[2])+' · '+esc(brief?brief.budget:r[3])+'</span><div class="food-stats"><span class="meta">타베로그 '+esc(r[4])+'</span>'+distance+'</div><span class="notes">'+esc(brief?brief.note:r[7])+'</span>'+detailsButton+'<div class="foodlinks"><a href="'+r[5]+'" target="_blank" rel="noopener noreferrer">타베로그</a><a href="'+maps(r[1]+' '+foodCity)+'" target="_blank" rel="noopener noreferrer">Google Maps</a>'+(videoPick?'':phoneLink)+'</div></div></article>'
 }
 function renderKyotoVideoResearch(d){
