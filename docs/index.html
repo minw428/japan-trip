@@ -108,6 +108,9 @@ body.restaurant-modal-open{overflow:hidden}
 @media(min-width:600px){.dayhero{height:210px}.foodgrid{grid-template-columns:1fr 1fr}.food{grid-template-columns:104px 1fr}.panelpad{padding:23px}.event{grid-template-columns:72px 1fr}.flightbar{max-width:640px}.dates{padding-left:18px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 .food-distance{display:block;width:fit-content;margin-top:6px;padding:3px 7px;background:#e8f3f4;color:#115e69;border-radius:7px;font-size:.73rem;font-weight:800;line-height:1.4}
+.food-distance[hidden]{display:none}.food-distance.is-visible{animation:food-distance-fade-in .35s ease-out both}
+@keyframes food-distance-fade-in{from{opacity:0}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){.food-distance.is-visible{animation:none}}
 </style>
 </head>
 <body>
@@ -367,28 +370,24 @@ function straightLineMeters(a,b){
  return 6371000*2*Math.atan2(Math.sqrt(Math.min(1,h)),Math.sqrt(Math.max(0,1-h)));
 }
 function formatFoodDistance(meters){
- if(meters<50)return '50m 이내';
- if(meters<1000)return '약 '+(Math.round(meters/50)*50)+'m';
- return '약 '+(meters/1000).toFixed(meters<100000?1:0)+'km';
+ return (Math.round(meters/10)*10).toLocaleString('ko-KR')+'m';
 }
 function foodDistanceText(id){
  const destination=typeof restaurantLocations==='undefined'?null:restaurantLocations[id];
- if(!destination)return '매장 위치 확인 필요';
- if(foodLocation.position){
-  const stale=foodLocation.pending||foodLocation.error?'이전 위치 기준 · ':'';
-  return stale+'직선 '+formatFoodDistance(straightLineMeters(foodLocation.position,destination));
- }
- if(foodLocation.pending)return '거리 확인 중…';
- if(foodLocation.denied)return '위치 허용 시 거리 표시';
- if(foodLocation.error)return '거리 조회 불가';
- return '위치 허용 시 거리 표시';
+ if(!destination||!foodLocation.position||foodLocation.pending||foodLocation.error)return '';
+ return '현재 위치에서 '+formatFoodDistance(straightLineMeters(foodLocation.position,destination));
 }
 function updateFoodDistances(){
- document.querySelectorAll('#foodview [data-food-distance]').forEach(el=>{el.textContent=foodDistanceText(el.dataset.foodDistance)});
+ document.querySelectorAll('#foodview [data-food-distance]').forEach(el=>{
+  const text=foodDistanceText(el.dataset.foodDistance);
+  el.textContent=text;el.hidden=!text;
+  if(text)el.classList.add('is-visible');else el.classList.remove('is-visible');
+ });
 }
 function refreshFoodLocation(){
  const requestId=++foodLocation.requestId;
- if(!navigator.geolocation){foodLocation.error='이 브라우저는 위치 조회를 지원하지 않습니다.';updateFoodDistances();return}
+ foodLocation.position=null;
+ if(!navigator.geolocation){foodLocation.pending=false;foodLocation.error='이 브라우저는 위치 조회를 지원하지 않습니다.';updateFoodDistances();return}
  foodLocation.pending=true;foodLocation.error='';updateFoodDistances();
  const fail=error=>{
   if(requestId!==foodLocation.requestId)return;
@@ -415,7 +414,7 @@ function mealCard(id,city){
  const detailsButton=hasDetails?'<button type="button" class="food-detail-open" data-restaurant-details="'+esc(id)+'" aria-haspopup="dialog" aria-controls="restaurant-detail" aria-label="'+esc(r[0])+' '+(videoPick?'유튜브':'도쿄 30끼')+' 추천 메뉴와 팁 보기">추천 메뉴·팁 보기 ＋</button>':'';
  const phoneLink=id==='kanekobbq'?'<a href="tel:+81364154129" aria-label="야키니쿠 카네코 전화 예약 +81 3 6415 4129">전화 예약 ↗</a>':id==='daruma'?'<a href="tel:+81662132033" aria-label="다루마 난바 본점 전화 문의 +81 6 6213 2033">전화 문의 ↗</a>':videoPick?.phone?'<a href="tel:'+esc(videoPick.phone)+'">전화 문의 ↗</a>':'';
  const brief=videoPick?kyotoVideoDetails[id]:null;
- const distance='<span class="food-distance" data-food-distance="'+esc(id)+'">'+esc(foodDistanceText(id))+'</span>';
+ const distance='<span class="food-distance" data-food-distance="'+esc(id)+'" hidden></span>';
  const foodCity=['kyounawa','hikinikukyoto','inohanare','gihey','uokeya','moritaya'].includes(id)?'교토':city;
  return '<article class="food'+(hasDetails?' has-details':'')+'" data-restaurant="'+esc(id)+'">'+media+'<div class="foodbody"><strong>'+esc(r[0])+'</strong><span class="jp" lang="ja">'+esc(r[1])+'</span><span class="meta">'+esc(r[2])+' · '+esc(brief?brief.budget:r[3])+'</span><span class="meta">타베로그 '+esc(r[4])+'</span>'+distance+'<span class="notes">'+esc(brief?brief.note:r[7])+'</span>'+detailsButton+'<div class="foodlinks"><a href="'+r[5]+'" target="_blank" rel="noopener noreferrer">타베로그</a><a href="'+maps(r[1]+' '+foodCity)+'" target="_blank" rel="noopener noreferrer">Google Maps</a>'+(videoPick?'':phoneLink)+'</div></div></article>'
 }
