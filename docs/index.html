@@ -320,9 +320,13 @@ const snackStops={
  '2026-11-29':[{id:'shinpachi',time:'13:45경 · 선택',where:'아라시야마 점심 → 14:00 도게츠교 사이',tip:'도게츠교 북쪽 입구에서 10–15분. 추우면 젤라토를 건너뛰고 따뜻한 커피 선택.'},{id:'arabica',time:'14:00경 · 선택',where:'도게츠교 주변 강변 → 금각사 선택 이동 전',tip:'포장 커피 10–15분. 14:25 금각사 이동을 유지하면 긴 줄은 건너뛰고, 금각사를 생략하면 강변 휴식 시간을 늘리기.'}],
  '2026-11-30':[{id:'inarifutaba',time:'11:40경 · 선택',where:'후시미이나리 관람 후 → 12:05 도후쿠지 선택 관람 전',tip:'교토 오전 간식입니다. 구매·주변 이동 10–15분 여유를 보고 선택하고, 관람·이동이 늦어지면 생략. 오사카 저녁과는 별도.'}]
 };
+function renderHeldSnacks(d){
+ if(d.id!=='2026-11-28')return '';
+ return '<aside class="note" data-snack-hold="gionsakai"><h4 style="margin:0 0 6px">재개장 확인 후 방문 · 보류 후보</h4><strong>파티세리 기온 사카이</strong><span class="jp" lang="ja">洋菓子 ぎをん さかい</span><p style="margin:6px 0">케이크·구움과자·카페 · <strong>현재 리모델링 휴업 중</strong></p><p style="margin:6px 0">2026/10/18 공식 안내 확인: 6/29부터 당분간 휴업, 재개장일 미정. 현재 방문 가능한 간식 코스가 아닙니다.</p><p style="margin:6px 0">재개장과 영업시간이 확인되면 11/28 점심 후 기온·하나미코지에서 쉬어가는 대안으로 선택. 가기젠·가사기야와 모두 들르지 않고 한 곳만 고르세요. 기요미즈데라 관람 후에는 영업 여부를 다시 확인해야 합니다.</p><div class="foodlinks"><a href="https://www.gion-sakai.com/" target="_blank" rel="noopener noreferrer">공식 재개장 공지 확인 ↗</a><a href="'+maps('洋菓子 ぎをん さかい 京都 祇園町南側570-122')+'" target="_blank" rel="noopener noreferrer">Google Maps ↗</a></div></aside>';
+}
 function renderSnacks(d,compact=false){
  const stops=snackStops[d.id];if(!stops)return '';
- return '<section class="panel" aria-label="'+esc(d.label)+' 관광 사이 간식"><div class="panelpad"><h3>관광 사이 간식·휴식 · 선택</h3><p class="hint">모두 방문하는 일정이 아닙니다. 배고픔·날씨·대기 상황에 따라 한 곳씩 고르세요. 시간은 기존 관광 사이의 제안이며 이동·대기시간은 현장에 따라 달라집니다. 점수 3.5 이상·리뷰어 200명 이상으로 선정했습니다. 영업시간과 가격은 방문 전 재확인하세요.</p>'+stops.map(s=>'<div class="meal"><h4>'+esc(s.time)+' · '+esc(R[s.id][0])+'</h4><p class="snack-route">'+esc(s.where)+'<br>'+esc(s.tip)+'</p>'+(compact?'<p class="muted">'+esc(R[s.id][2])+' · '+esc(R[s.id][3])+'</p>'+attrLink(R[s.id][1]+' 京都','Google Maps ↗'):mealCard(s.id,'京都'))+'</div>').join('')+'<p class="hint">걷거나 사찰 안에서 먹기보다 매장이 허용한 공간에서 먹고, 포장 쓰레기는 직접 챙겨 주세요.</p></div></section>';
+ return '<section class="panel" aria-label="'+esc(d.label)+' 관광 사이 간식"><div class="panelpad"><h3>관광 사이 간식·휴식 · 선택</h3><p class="hint">모두 방문하는 일정이 아닙니다. 배고픔·날씨·대기 상황에 따라 한 곳씩 고르세요. 시간은 기존 관광 사이의 제안이며 이동·대기시간은 현장에 따라 달라집니다. 점수 3.5 이상·리뷰어 200명 이상으로 선정했습니다. 영업시간과 가격은 방문 전 재확인하세요.</p>'+stops.map(s=>'<div class="meal"><h4>'+esc(s.time)+' · '+esc(R[s.id][0])+'</h4><p class="snack-route">'+esc(s.where)+'<br>'+esc(s.tip)+'</p>'+(compact?'<p class="muted">'+esc(R[s.id][2])+' · '+esc(R[s.id][3])+'</p>'+attrLink(R[s.id][1]+' 京都','Google Maps ↗'):mealCard(s.id,'京都'))+'</div>').join('')+renderHeldSnacks(d)+'<p class="hint">걷거나 사찰 안에서 먹기보다 매장이 허용한 공간에서 먹고, 포장 쓰레기는 직접 챙겨 주세요.</p></div></section>';
 }
 const D=[
 {id:'2026-11-25',label:'11/25 수',city:'도쿄',color:'#147b89',title:'인천에서 도쿄로',intro:'저녁은 긴자 카츠카미 니 18:00 예약 완료. 입국 후 호텔에서 쉬고 17:45 식당 도착 목표로 이동합니다. 도쿄역 산책은 식사 후 선택입니다.',stay:'karaksa hotel colors Tokyo Yaesu',events:[
