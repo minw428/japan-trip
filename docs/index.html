@@ -14,6 +14,7 @@
 :root{--ink:#10283a;--muted:#627484;--line:#dfe7ec;--bg:#f6f7f4;--paper:#fff;--tokyo:#147b89;--kyoto:#bc6843;--osaka:#805676;--shadow:0 10px 30px rgba(16,40,58,.075)}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans CJK KR",sans-serif;line-height:1.56}
 button,a{font:inherit}button{cursor:pointer}a{color:#11677e;text-underline-offset:3px}button:focus-visible,a:focus-visible{outline:3px solid #f0a542;outline-offset:3px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
 .wrap{max-width:780px;margin:auto;padding:0 18px}.mast{background:var(--ink);color:white;padding:26px 0 25px}.eyebrow{font-size:.8rem;letter-spacing:.1em;opacity:.72;font-weight:800}.mast h1{font-size:clamp(1.65rem,6vw,2.35rem);line-height:1.2;margin:7px 0}.mast p{margin:0;color:#d5e4eb;font-size:.92rem}.flightbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:20px}.flight{background:#ffffff12;border:1px solid #ffffff2a;border-radius:12px;padding:12px}.flight strong{display:block;font-size:.9rem}.flight span{display:block;color:#dbe8ee;font-size:.76rem;margin-top:4px}.sticky{position:sticky;top:0;z-index:10;background:#f6f7f4eb;backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}.dates{display:flex;gap:8px;overflow-x:auto;padding:11px 18px;max-width:780px;margin:auto;scrollbar-width:none}.dates::-webkit-scrollbar{display:none}.dates button{white-space:nowrap;border:1px solid var(--line);background:white;color:var(--ink);border-radius:999px;padding:8px 13px;font-size:.9rem;font-weight:750}.dates button[aria-current=true]{background:var(--ink);color:white;border-color:var(--ink)}
 main{padding-top:20px;padding-bottom:110px}.panel{background:var(--paper);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);margin-bottom:15px;overflow:hidden}.panelpad{padding:18px}.dayhead{padding:20px;border-top:5px solid var(--accent)}.dayhead .city{font-size:.78rem;font-weight:850;letter-spacing:.1em;color:var(--accent)}.dayhead h2{margin:4px 0 5px;font-size:1.55rem}.dayhead p{margin:0;color:var(--muted);font-size:.92rem}.dayhero{height:170px;margin:16px 0 0;border-radius:12px;background-color:#d8dfdf;background-repeat:no-repeat}.herocap{display:flex;justify-content:space-between;gap:8px;margin-top:6px;color:var(--muted);font-size:.74rem;font-weight:750}.herocap span{font-weight:500}.badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}.badge{font-size:.73rem;font-weight:800;border-radius:999px;padding:4px 9px;background:#e8f3f4;color:#115e69}.badge.option{background:#f3ece7;color:#946044}.badge.hotel{background:#efe9f0;color:#72506d}
 h3{font-size:1.1rem;margin:0 0 12px}.hint{font-size:.78rem;color:var(--muted);margin:0 0 12px}.timeline{position:relative;padding-left:8px}.event{display:grid;grid-template-columns:56px 1fr;gap:12px;position:relative;padding:0 0 17px}.event:last-child{padding-bottom:0}.event time{font-size:.82rem;font-weight:850;color:var(--accent);padding-top:2px}.eventbody{border-left:2px solid var(--line);padding:0 0 0 14px;min-height:34px;position:relative}.eventbody:before{content:"";width:9px;height:9px;position:absolute;left:-5.5px;top:6px;background:var(--accent);border:2px solid white;border-radius:50%;box-shadow:0 0 0 1px var(--accent)}.eventbody strong{display:block;font-size:.94rem}.eventbody small{display:block;color:var(--muted);font-size:.79rem;margin-top:2px}.eventbody.option strong{color:#906247}.eventbody a{font-size:.76rem;margin-top:4px;display:inline-block}.mini{display:flex;gap:8px;flex-wrap:wrap}.pill{display:inline-block;border:1px solid #cbd8df;background:white;padding:7px 10px;border-radius:8px;text-decoration:none;font-size:.8rem;font-weight:800}.pill:hover{background:#f1f7f8}
@@ -118,7 +119,7 @@ body.restaurant-modal-open{overflow:hidden}
 <body>
 <header class="mast"><div class="wrap"><div class="eyebrow">2026 · FAMILY TRIP</div><h1>일본 가족여행</h1><p>11월 25일–12월 2일 · 도쿄 → 교토 → 오사카 · 3인 가족</p><div class="flightbar"><div class="flight"><strong>가는 편 · WE0501</strong><span>11/25 인천 T1 09:50 → 나리타 T2 12:05</span></div><div class="flight"><strong>오는 편 · WE0512</strong><span>12/2 간사이 T1 11:45 → 인천 T1 13:45</span></div></div><button id="install" class="install" hidden>홈 화면에 설치</button><span class="status">iPhone은 Safari 공유 메뉴에서 ‘홈 화면에 추가’를 선택하세요.</span></div></header>
 <div class="sticky"><nav class="dates" id="dates" aria-label="날짜 선택"></nav></div>
-<main class="wrap">
+<main class="wrap" id="trip-content">
 <section id="schedule" class="view active" aria-label="일정"></section>
 <section id="foodview" class="view" aria-label="식당"></section>
 <section id="transitview" class="view" aria-label="교통"></section>
@@ -126,6 +127,7 @@ body.restaurant-modal-open{overflow:hidden}
 <section id="checkview" class="view" aria-label="준비할 일"></section>
 <div class="pagefoot">시간은 현장 상황에 따라 바뀔 수 있는 계획입니다. 열차 번호·좌석·영업시간은 예약 또는 출발 전 다시 확인하세요. 가격은 주류를 제외한 1인 예상 범위입니다. 일정과 생성 이미지는 첫 방문 후 오프라인에서도 볼 수 있습니다. Google Maps·타베로그 링크는 인터넷 연결이 필요합니다.</div>
 </main>
+<div id="date-announcement" class="sr-only" aria-live="polite" aria-atomic="true"></div>
 <nav class="bottom" aria-label="화면 메뉴"><div class="items">
 <button data-view="schedule" aria-current="true"><b>◷</b>일정</button><button data-view="foodview"><b>☷</b>식당</button><button data-view="transitview"><b>⇄</b>교통</button><button data-view="hotelsview"><b>⌂</b>숙소</button><button data-view="checkview"><b>☑</b>준비</button>
 </div></nav>
@@ -586,10 +588,56 @@ function render(){
  if(document.getElementById('foodview').classList.contains('active'))refreshFoodLocation();
  document.getElementById('hotelsview').innerHTML='<div class="panel"><div class="panelpad"><h3>숙소 3곳</h3>'+H.map(h=>'<div class="meal"><strong>'+esc(h[0])+' · '+esc(h[3])+'</strong><p class="stay">'+esc(h[1])+'</p><p class="muted">'+esc(h[4])+'</p><a class="pill" href="'+maps(h[2])+'" target="_blank" rel="noopener noreferrer">Google Maps 열기 ↗</a></div>').join('')+'</div></div>';
  document.getElementById('checkview').innerHTML='<div class="panel"><div class="panelpad"><h3>출발 전 준비</h3><p class="hint">체크 상태는 이 기기에만 저장됩니다.</p>'+todo.map((t,i)=>'<div class="check"><input type="checkbox" id="t'+i+'" data-todo="'+i+'" '+(localStorage.getItem('tripTodo'+i)==='1'?'checked':'')+'><label for="t'+i+'"><strong>'+esc(t[0])+' · '+esc(t[1])+'</strong><small>'+esc(t[2])+'</small></label></div>').join('')+'</div></div>';
- document.querySelectorAll('#dates button').forEach(b=>b.addEventListener('click',()=>{current=Number(b.dataset.day);render();window.scrollTo(0,0)}));
+ document.querySelectorAll('#dates button').forEach(b=>b.addEventListener('click',()=>selectTravelDay(Number(b.dataset.day))));
  document.querySelectorAll('[data-todo]').forEach(c=>c.addEventListener('change',()=>localStorage.setItem('tripTodo'+c.dataset.todo,c.checked?'1':'0')));
  requestAnimationFrame(()=>{applyAtlas();if(document.getElementById('transitview').classList.contains('active'))initTripMap()});
 }
+let dateSwipe=null,dateSwipeBlockClickUntil=0;
+function selectTravelDay(index){
+ if(!Number.isInteger(index)||index<0||index>=D.length)return false;
+ dateSwipe=null;current=index;render();
+ document.getElementById('date-announcement').textContent=D[current].label+' · '+D[current].city+' · '+D[current].title;
+ window.scrollTo({top:0,left:0,behavior:'instant'});
+ document.getElementById('dates').querySelector?.('[aria-current="true"]')?.scrollIntoView({block:'nearest',inline:'center',behavior:'instant'});
+ return true;
+}
+function dateSwipeView(){return ['schedule','foodview','transitview'].find(id=>document.getElementById(id).classList.contains('active'))}
+function dateSwipeExcluded(target){return !target||!target.closest||!!target.closest('a,button,input,textarea,select,label,summary,details,dialog,[contenteditable]:not([contenteditable="false"]),#daymap,.maplibregl-map,[data-no-date-swipe]')}
+function dateSwipeStart(event){
+ dateSwipe=null;dateSwipeBlockClickUntil=0;
+ const view=dateSwipeView(),touch=event.touches?.[0],width=window.innerWidth||10000;
+ if(!view||event.touches.length!==1||!touch||document.getElementById('restaurant-detail').open||dateSwipeExcluded(event.target))return;
+ // Leave screen edges to native back/forward gestures and keep pinch/scroll entirely native.
+ if(touch.clientX<28||touch.clientX>width-28||window.getSelection?.()?.toString())return;
+ dateSwipe={id:touch.identifier,x:touch.clientX,y:touch.clientY,time:event.timeStamp??Date.now(),scrollY:window.scrollY||0,day:current,view};
+}
+function dateSwipeMove(event){
+ if(!dateSwipe)return;
+ const s=dateSwipe,t=event.touches?.[0];
+ if(event.touches.length!==1||!t||t.identifier!==s.id){dateSwipe=null;return}
+ const dx=Math.abs(t.clientX-s.x),dy=Math.abs(t.clientY-s.y);
+ // Once a gesture becomes vertical, it cannot later turn into date navigation.
+ if(Math.abs((window.scrollY||0)-s.scrollY)>12||(dy>12&&dy>=dx*.75))dateSwipe=null;
+}
+function dateSwipeEnd(event){
+ const s=dateSwipe;dateSwipe=null;
+ if(!s||event.touches.length||s.day!==current||s.view!==dateSwipeView()||document.getElementById('restaurant-detail').open)return;
+ const t=Array.from(event.changedTouches||[]).find(t=>t.identifier===s.id);
+ if(!t||Math.abs((window.scrollY||0)-s.scrollY)>12||window.getSelection?.()?.toString())return;
+ const dx=t.clientX-s.x,dy=Math.abs(t.clientY-s.y),duration=(event.timeStamp??Date.now())-s.time;
+ if(Math.abs(dx)<80||Math.abs(dx)<dy*1.8||duration<60||duration>800)return;
+ dateSwipeBlockClickUntil=Date.now()+450;
+ const next=current+(dx<0?1:-1);
+ if(next>=0&&next<D.length)selectTravelDay(next);
+}
+const tripContent=document.getElementById('trip-content');
+tripContent.addEventListener('touchstart',dateSwipeStart,{passive:true});
+tripContent.addEventListener('touchmove',dateSwipeMove,{passive:true});
+tripContent.addEventListener('touchend',dateSwipeEnd,{passive:true});
+tripContent.addEventListener('touchcancel',()=>{dateSwipe=null},{passive:true});
+tripContent.addEventListener('click',event=>{
+ if(event.detail!==0&&Date.now()<dateSwipeBlockClickUntil){event.preventDefault();event.stopImmediatePropagation()}
+},true);
 const restaurantDialog=document.getElementById('restaurant-detail');
 document.getElementById('foodview').addEventListener('click',event=>{
  if(event.target.closest('a'))return;
