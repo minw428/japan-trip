@@ -982,5 +982,9 @@ Object.assign(restaurantLocations,{
  madrague:{latitude:35.012300656138656,longitude:135.75562634199613,name:'Kissa Madrague',source:'https://tabelog.com/en/kyoto/A2601/A260202/26019438/',checked:'2026-10-13'}
 });
 Object.assign(restaurantLocations,{
- yuji:{latitude:35.66258686870586,longitude:139.69733755424457,name:'Sumibi Yaki Yuji',source:'https://tabelog.com/en/tokyo/A1303/A130301/13001794/',checked:'2026-10-13'}
+ yuji:{latitude:35.66258686870586,longitude:139.69733755424457,name:'Sumibi Yaki Yuji',source:'https://tabelog.com/en/tokyo/A1303/A130301/13001794/',checked:'2026-10-13'},
+ citybakery:{latitude:35.679466438717945,longitude:139.7689725243648,name:'THE CITY BAKERY Tokyo Midtown Yaesu',source:'https://tabelog.com/en/tokyo/A1302/A130201/13276370/',checked:'2026-11-03'},
+ aromayaesu:{latitude:35.67961633791311,longitude:139.77093188320322,name:'Aroma Coffee Yaesu',source:'https://tabelog.com/en/tokyo/A1302/A130201/13045029/',checked:'2026-11-03'},
+ crossties:{latitude:35.68142026783438,longitude:139.7652179333896,name:'5 CROSSTIES COFFEE Gransta Tokyo',source:'https://tabelog.com/en/tokyo/A1302/A130201/13207915/',checked:'2026-11-03'},
+ rokumei:{latitude:35.68265314871519,longitude:139.76665887439864,name:'ROKUMEI COFFEE Gransta Marunouchi',source:'https://tabelog.com/en/tokyo/A1302/A130201/13299403/',checked:'2026-11-03'}
 });
