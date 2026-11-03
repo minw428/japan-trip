@@ -1,4 +1,4 @@
-const CACHE='japan-trip-2026-v40-date-swipe';
+const CACHE='japan-trip-2026-v41-date-slide';
 const KUSHIKATSU_ASSET='./kushikatsu-caricature.jpg';
 const SHELL=['./','./index.html','./tokyo30-details.js','./manifest.webmanifest','./icon.svg','./icon-192.png','./icon-512.png','./food-illustrations.png','./tokyo30-food-illustrations.png','./day-atlas.png','./grill-grand-steak.jpg'];
 SHELL.push('./kyoto-video-review.html');
