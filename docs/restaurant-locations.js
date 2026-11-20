@@ -526,21 +526,9 @@ const restaurantLocations={
     "source": "https://tabelog.com/en/tokyo/A1303/A130301/13235527/",
     "checked": "2026-10-13"
   },
-  "kanekobbq": {
-    "latitude": 35.649719558714565,
-    "longitude": 139.6990217641134,
-    "name": "Daikanyama Yakiniku Kaneko",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "",
-      "addressLocality": "Sarugakucho Shibuya Tokyo",
-      "addressRegion": "Tokyo",
-      "postalCode": "1500033",
-      "addressCountry": "JP"
-    },
-    "source": "https://tabelog.com/en/tokyo/A1303/A130303/13178613/",
-    "checked": "2026-10-13"
-  },
+  "chinya": {"latitude":35.715022237900314,"longitude":139.80138298353947,"name":"Chinya","source":"https://tabelog.com/en/tokyo/A1311/A131102/13268750/","checked":"2026-11-20"},
+  "mishimatei": {"latitude":35.00854977786959,"longitude":135.7670590603932,"name":"Mishima Tei Honten","source":"https://tabelog.com/en/kyoto/A2601/A260201/26000646/","checked":"2026-11-20"},
+  "hariju": {"latitude":34.66855030800069,"longitude":135.5006547871456,"name":"Hari Ju Doutonbori honten","source":"https://tabelog.com/en/osaka/A2701/A270202/27001250/","checked":"2026-11-20"},
   "ino": {
     "latitude": 35.00132362648616,
     "longitude": 135.76695110001438,

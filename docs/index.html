@@ -158,10 +158,11 @@ body.restaurant-modal-open{overflow:hidden}
 'use strict';
 const foodCell={
  suzuki:0,rokurin:2,ikaruga:1,kaneko:5,hanamaru:3,imahan:4,grill:6,kibun:3,urin:1,umikaze:1,
- tonkatsujp:0,junchan:0,menchira:7,burger:8,chao:9,kuroda:10,kanekobbq:10,ino:1,omen:7,hafuu:11,roku:10,
+ tonkatsujp:0,junchan:0,menchira:7,burger:8,chao:9,kuroda:10,chinya:4,mishimatei:4,hariju:4,ino:1,omen:7,hafuu:11,roku:10,
  yoshimura:12,hirokawa:13,shoraian:14,saganoyu:18,yamamoto:15,smart:19,inoda:15,petit:15,
  walden:15,ajinoya:16,mizuno:16,fukutaro:16,ippo:17,joroku:1,imai:7,hide:3
 };
+const sukiyakiOptions={"chinya":{"phone":"+81338410010","official":"https://chinya.co.jp/menu/","booking":"https://www.tablecheck.com/en/shops/chinya-asakusa/reserve","checked":"2026-11-20"},"mishimatei":{"phone":"+81752210003","official":"https://www.mishima-tei.co.jp/cuisine/","booking":"https://www.mishima-tei.co.jp/booking/","checked":"2026-11-20"},"hariju":{"phone":"+81662117777","official":"https://www.harijyu.co.jp/shop-info/category/doutonbori/","booking":"https://booking.ebica.jp/webrsv/search/e014229301/36240","checked":"2026-11-20"}};
 const tokyo30Recommended=new Set(['kaneko','tsujihan','bairin','bincho','bazoku','ginzatei','kyubey','hikiniku','moheji','toritake','sama','misaki','katsukami2','newtorigin','poppy']);
 const tokyo30FoodCell={tsujihan:0,toritake:1,moheji:2,sama:3,newtorigin:4,ginzatei:5};
 Object.assign(foodCell,{bairin:0,bincho:13,bazoku:1,kyubey:3,hikiniku:8,misaki:3,katsukami2:0,poppy:18});
@@ -192,6 +193,9 @@ const R={
  poppy:['카페앤바 포피','Cafe&Bar ポピー','레트로 카페·나폴리탄·가벼운 식사','식사·음료 ¥1,000–2,000 예상','3.06 / 11명','https://tabelog.com/tokyo/A1311/A131103/13301350/','','스미다강 건너 혼조 · 강변 산책 선택 시 휴식 후보 · 우회 도보 필요 · 영업·메뉴 재확인'],
  hanamaru:['네무로 하나마루 KITTE 마루노우치','根室花まる KITTE丸の内店','스시·단품 주문','¥3,000–5,000','3.54 / 1,729명','https://tabelog.com/tokyo/A1302/A130201/13153777/','sushi','긴 대기 가능'],
  imahan:['아사쿠사 이마한 국제거리 본점','浅草今半 国際通り本店','소고기·스키야키','점심 ¥4,000–8,000 / 저녁 ¥10,000–20,000','3.62 / 784명','https://tabelog.com/tokyo/A1311/A131102/13003649/','sukiyaki','예약 권장'],
+ chinya:['친야 아사쿠사 본점','ちんや 浅草本店','숙성 흑모와규 스키야키','1인 코스 ¥11,880–17,380 · 서비스료10% 포함','3.63 / 413명','https://tabelog.com/tokyo/A1311/A131102/13268750/','sukiyaki','11/26 점심 · 센소지 북동쪽 도보 약10–15분 · 숙성 살코기·마블링 비교 코스 추천 · 90–120분 예상, 골목 휴식 시간 조절 · 전채 해산물 제외 문의 · 예약·잔여석 미확인'],
+ mishimatei:['미시마테이 본점','三嶋亭 本店','숙성 흑모와규 스키야키 · 월 코스','1인 ¥17,545–21,780 · 세금·서비스 포함, 객실료 별도 확인','3.64 / 883명','https://tabelog.com/kyoto/A2601/A260201/26000646/','sukiyaki','11/28 저녁: 기온행 대신 택시로 이동·식후 산책 생략. 11/29 저녁: 에이칸도와 택일 · 해산물 많은 하나 코스 대신 월 코스 우선, 전채 확인 · 예약·잔여석 미확인'],
+ hariju:['하리주 도톤보리 본점 · 일본요리','はり重 道頓堀本店 日本料理','흑모와규 스키야키','1인 점심 ¥7,150 / 저녁 ¥9,900–14,300 · 세금·서비스 포함','3.55 / 750명','https://tabelog.com/osaka/A2701/A270202/27001250/','sukiyaki','11/30 저녁·12/1 점심/저녁 · Cross Hotel에서 도보 약3–5분 · 같은 건물의 그릴·카레점과 구분 · 12월은 화요일도 영업(공식) · 식사 90–120분 예상, 산책·쇼핑 시간 조절 · 예약·잔여석 미확인'],
  grill:['그릴 그랜드','グリル グランド','일본식 양식·스테이크','점심 ¥3,000–4,500 / 저녁 ¥10,000–15,000','3.70 / 930명','https://tabelog.com/tokyo/A1311/A131102/13008702/','','오므라이스는 여러 메뉴 중 하나 · 저녁 예약은 단품만으로 불가'],
  kibun:['기분즈시','紀文寿司','스시','¥8,000–10,000','3.68 / 428명','https://tabelog.com/tokyo/A1311/A131102/13016811/','sushi','예약 시 단품 주문 확인'],
  urin:['우린보','うりんぼ','돈코츠 라멘','¥1,000–1,500','3.55 / 475명','https://tabelog.com/tokyo/A1311/A131102/13008579/','ramen','저녁 영업 시간 확인'],
@@ -202,7 +206,7 @@ const R={
  burger:['더 그레이트 버거','THE GREAT BURGER','수제버거','¥2,000–3,000','3.66 / 3,241명','https://tabelog.com/tokyo/A1306/A130601/13042654/','','하라주쿠'],
  chao:['차오밤부','チャオバンブー','태국식 볶음밥·면','¥1,500–2,500','3.54 / 1,360명','https://tabelog.com/tokyo/A1306/A130602/13009408/','','매운맛·새우 확인'],
  kuroda:['야키니쿠 쿠로다','焼肉 黒田','소고기 구이','¥8,000–12,000','3.56 / 770명','https://tabelog.com/tokyo/A1303/A130301/13235527/','','11/27 17:30 예약 완료 · 17:15 도착 목표 · 円山町1-16 しぶまる館 1F·2F · 코스·좌석·결제 조건은 예약증 기준'],
- kanekobbq:['다이칸야마 야키니쿠 카네코','代官山 焼肉かねこ','흑모와규 모둠·야키니쿠','식사 ¥12,000–15,000 예상','3.68 / 374명','https://tabelog.com/tokyo/A1303/A130303/13178613/','','전화 예약 필수 · 방문 한 달 전부터 접수 (11/27 방문: 10/27부터 문의) · 03-6415-4129 · 예약 미완료 · 다이칸야마역 도보 약 7분 · 고기 모둠 ¥9,020 + 서비스료 8%, 식사·음료 별도 · 2시간제'],
+
  ino:['멘야 이노이치','麺屋 猪一','생선 육수 라멘','¥1,500–2,500','3.71 / 1,133명','https://tabelog.com/kyoto/A2601/A260201/26032368/','ramen','대기·점심 마감 확인'],
  omen:['오멘 닛폰 시조폰토초','おめんNIPPON 四条先斗町店','야채 우동','¥2,000–3,000','3.54 / 452명','https://tabelog.com/kyoto/A2601/A260201/26001805/','udon','점심 마지막 주문 15:00 기준'],
  hafuu:['하후 본점','はふう 本店','비프커틀릿·스테이크','점심 ¥3,000–6,000 / 저녁 ¥10,000–15,000','3.65 / 768명','https://tabelog.com/kyoto/A2601/A260202/26000943','','기온에서 택시 이동 필요'],
@@ -259,9 +263,9 @@ Object.assign(kyotoVideoPicks,{
  hikinikukyoto:{url:'https://www.youtube.com/watch?v=Vw6Ye5lp9Mo',reason:'숯불에서 갓 구운 함박과 밥 자체를 함께 즐기는 한 끼. 영상 설명에 교토점이 명시되어 있어 지점을 확인했고, 기온·시라카와 관광과 가까운 동선으로 골랐습니다.',official:'https://hikinikutocome.com/locations/kyoto/'}
 });
 Object.assign(R,{
- gihey:['하치다이메 기헤이 · 교토 기온점','京の米料亭 八代目儀兵衛','갓 지은 쌀밥·와규 스키야키 정식','¥2,500–3,500 예상','3.55 / 977명','https://tabelog.com/kyoto/A2601/A260301/26014418/','','예약 미완료 · 야사카신사 정면 기온마치키타가와296 · 와규 스키야키 정식 ¥2,980(공식 메뉴), 회·새우가 섞인 만카이 정식과 구분 · 점심 마지막 주문14:30, 금·토·일 저녁17:00–20:00/마지막 주문19:15(11월 영업 달력 재확인) · 50분제·예약10분 전 도착 · 카드·교통카드 가능·전면 금연 · 11/28 늦은 점심은 사전예약 슬롯이 동선에 맞을 때만 · 11/28 19시 저녁을 고르면 기온 산책을 줄여18:50 도착 · 11/29 18시 식사 후 에이칸도 이동은 가능 시간 재확인 · 조식은 이른 아침을 피하려고 제외'],
+ gihey:['하치다이메 기헤이 · 교토 기온점','京の米料亭 八代目儀兵衛','갓 지은 쌀밥·와규 스키야키 정식','¥2,500–3,500 예상','3.55 / 977명','https://tabelog.com/kyoto/A2601/A260301/26014418/','','예약 미완료 · 야사카신사 정면 기온마치키타가와296 · 와규 스키야키 정식 ¥2,980(공식 메뉴), 회·새우가 섞인 만카이 정식과 구분 · 점심 마지막 주문14:30, 금·토·일 저녁17:00–20:00/마지막 주문19:15(11월 영업 달력 재확인) · 50분제·예약10분 전 도착 · 카드·교통카드 가능·전면 금연 · 11/28은 예약 마감으로 후보 제외 · 11/29 18시 식사 후 에이칸도 이동은 가능 시간 재확인 · 조식은 이른 아침을 피하려고 제외'],
  uokeya:['기온 우오케야 우','祇をん う桶や う','장어구이·가족용 삼나무통 장어밥','¥4,500–6,000 예상','3.61 / 471명','https://tabelog.com/kyoto/A2601/A260301/26001387/','','예약 미완료 · 명물 우오케 작은 통 3인분 ¥12,600(1인 ¥4,200, 음료·추가 주문 별도) 또는 장어덮밥 ¥4,200/¥5,250(공식 안내) · 일본어 전화예약 +81-75-551-9966, 다음 달 말일까지 접수 · 낮11:30부터/마지막 주문14:00, 밤17:00부터/마지막 주문20:00 · 월요일 휴무로11/30 제외 · 기온 산책 후11/28·29 저녁 후보 · 숙소에서 도보 약15–20분(예상) · 장어가 괜찮은지 딸의 취향 확인 후 선택 · 현재 미쉐린 별을 확인하지 않아 별 수를 표기하지 않음'],
- moritaya:['모리타야 키야마치점','モリタ屋 木屋町店','와규 간사이식 스키야키·샤브샤브','¥9,000–15,000 예상 · 서비스료10% 포함 계획','3.68 / 538명','https://tabelog.com/kyoto/A2601/A260202/26000410/','','예약 미완료 · 우에오사카초531, 교토역 이세탄점과 구분 · 스키야키 ¥7,700/¥8,800/¥10,450 등 + 서비스료10%(음료 별도) · 비싼 코스의 성게·캐비아 전채는 피하고 기본 스키야키 구성을 예약 때 확인 · 점심11:30–15:30/최종입점14:30, 저녁17:00–22:00/최종입점20:45 · 공식 안내 전체 방 금연·별도 흡연실, 카드 가능 · 산조 숙소에서 도보 약5–10분(예상) · 11/28·29 저녁 후보, 90–120분 여유 권장 · 11/29 에이칸도19시 출발과 양립하기 어려워 관람을 늦추거나 생략 · +81-75-231-5118']
+ moritaya:['모리타야 키야마치점','モリタ屋 木屋町店','와규 간사이식 스키야키·샤브샤브','¥9,000–15,000 예상 · 서비스료10% 포함 계획','3.68 / 538명','https://tabelog.com/kyoto/A2601/A260202/26000410/','','예약 미완료 · 우에오사카초531, 교토역 이세탄점과 구분 · 스키야키 ¥7,700/¥8,800/¥10,450 등 + 서비스료10%(음료 별도) · 비싼 코스의 성게·캐비아 전채는 피하고 기본 스키야키 구성을 예약 때 확인 · 점심11:30–15:30/최종입점14:30, 저녁17:00–22:00/최종입점20:45 · 공식 안내 전체 방 금연·별도 흡연실, 카드 가능 · 산조 숙소에서 도보 약5–10분(예상) · 11/28은 예약 마감으로 후보 제외 · 11/29 저녁만 검토, 90–120분 여유 권장 · 11/29 에이칸도19시 출발과 양립하기 어려워 관람을 늦추거나 생략 · +81-75-231-5118']
 });
 Object.assign(foodCell,{gihey:4,uokeya:13,moritaya:4});
 Object.assign(kyotoVideoPicks,{
@@ -322,12 +326,12 @@ Object.assign(R,{
 Object.assign(foodCell,{citybakery:15,aromayaesu:15,crossties:15,rokumei:15});
 const meals={
  '2026-11-25':[['늦은 점심',['suzuki','rokurin','ikaruga','kaneko','hanamaru']],['저녁',['kaneko','suzuki','rokurin','ikaruga','hanamaru']]],
- '2026-11-26':[['점심',['imahan','grill','urin','umikaze','kibun']],['저녁',['grill','imahan','urin','umikaze','kibun']]],
- '2026-11-27':[['점심',['tonkatsujp','junchan','menchira','burger','chao']],['저녁',['kuroda','kanekobbq','menchira','burger','chao','hanamaru','yuji']]],
- '2026-11-28':[['점심',['gihey','kyounawa','hikinikukyoto','omen','ino','hafuu','smart','madrague']],['저녁',['shiki','moritaya','uokeya','gihey','kiraku','kuchibashi','kyounawa','hikinikukyoto','inohanare','roku','omen','ino','hafuu']]],
- '2026-11-29':[['아침',['yamamoto','smart','inoda','petit','walden']],['점심',['yoshimura','hirokawa','shoraian','saganoyu','omen']],['저녁',['shiki','moritaya','uokeya','gihey','kiraku','kuchibashi','kyounawa','hikinikukyoto','inohanare','omen','roku','ino','hafuu']]],
- '2026-11-30':[['아침',['yamamoto','smart','inoda','petit','walden']],['점심',['kyounawa','hikinikukyoto','omen','ino','hafuu','smart']],['저녁',['daruma','mizuno','fukutaro','imai','ippo','hide']]],
- '2026-12-01':[['점심',['daruma','ajinoya','mizuno','imai','ippo','joroku']],['저녁',['daruma','ajinoya','fukutaro','imai','joroku','hide']]]
+ '2026-11-26':[['점심',['chinya','imahan','grill','urin','umikaze','kibun']],['저녁',['grill','imahan','urin','umikaze','kibun']]],
+ '2026-11-27':[['점심',['tonkatsujp','junchan','menchira','burger','chao']],['저녁',['kuroda','menchira','burger','chao','hanamaru','yuji']]],
+ '2026-11-28':[['점심',['kyounawa','hikinikukyoto','omen','ino','hafuu','smart','madrague']],['저녁',['mishimatei','shiki','uokeya','kiraku','kuchibashi','kyounawa','hikinikukyoto','inohanare','roku','omen','ino','hafuu']]],
+ '2026-11-29':[['아침',['yamamoto','smart','inoda','petit','walden']],['점심',['yoshimura','hirokawa','shoraian','saganoyu','omen']],['저녁',['mishimatei','shiki','moritaya','uokeya','gihey','kiraku','kuchibashi','kyounawa','hikinikukyoto','inohanare','omen','roku','ino','hafuu']]],
+ '2026-11-30':[['아침',['yamamoto','smart','inoda','petit','walden']],['점심',['kyounawa','hikinikukyoto','omen','ino','hafuu','smart']],['저녁',['hariju','daruma','mizuno','fukutaro','imai','ippo','hide']]],
+ '2026-12-01':[['점심',['hariju','daruma','ajinoya','mizuno','imai','ippo','joroku']],['저녁',['hariju','daruma','ajinoya','fukutaro','imai','joroku','hide']]]
 };
 const tokyo30Meals={
  '2026-11-25':{'늦은 점심':['tsujihan','bairin','ginzatei'],'저녁':['bincho','bairin','ginzatei','kyubey','misaki','katsukami2','newtorigin','tsujihan']},
@@ -375,7 +379,7 @@ const D=[
 ];
 const todo=[
 ['후보 선택 후','히키니쿠토코메 교토점 WEB기장 확인','공식 교토점 페이지에서 원하는 날짜·시간·3명 접수 가능 여부 확인. 전화·SNS 예약 불가, 접수 비용은 화면 기준. 카드 준비(현금 불가). 11/28 늦은 점심·11/30 짐 회수에 맞지 않는 시간은 선택하지 않기'],
-['후보 선택 후','교토 영상 추가 후보 예약','우오케야 우 +81-75-551-9966: 일본어 전화·다음 달 말일까지 접수, 11/28 또는29 저녁(월요일11/30 휴무). 모리타야 키야마치 +81-75-231-5118: 기본 스키야키 구성·서비스료10%·식사 소요시간 확인. 기헤이는 공식 WEB 예약·50분제·10분 전 도착, 11월 영업 달력 확인. 모두 예약 미완료'],
+['후보 선택 후','교토 영상 추가 후보 예약','우오케야 우 +81-75-551-9966: 일본어 전화·다음 달 말일까지 접수, 11/28 또는29 저녁(월요일11/30 휴무). 11/29만 검토: 모리타야 키야마치 +81-75-231-5118: 기본 스키야키 구성·서비스료10%·식사 소요시간 확인. 기헤이도 11/29만 공식 WEB 예약·50분제·10분 전 도착, 11월 영업 달력 확인. 모두 예약 미완료'],
 ['선택 후 가급적 빨리','교토 저녁 후보 예약·가족 조건 확인','쿠치바시 모단 +81-75-352-0633: 코스 ¥6,600 + 1음료, 내장·날고기 비선호 전달. 키라쿠 +81-75-606-5153: 16세 동반 실내 금연석·선택 코스 확인. 교 우나와는 타베로그 온라인 예약 가능. 모두 예약 미완료, 판매 시작 시점은 미확인. 11/29 긴 코스와 19:00 에이칸도 출발은 함께 확정하지 않기'],
 ['지금–10/14','항공편·호텔 예약증 확인','항공편은 제공된 정보 반영. 도쿄는 11/26~28 호텔 조식 이용. 오사카 조식 포함 여부와 호텔 예약 상태 확인'],
 ['지금–10/14','교토 숙소 짐 보관 문의','11/28 체크인 전, 11/30 체크아웃 후 보관 가능 여부'],
@@ -386,7 +390,8 @@ const todo=[
 ['11/18','식당 예약·휴무·호텔 안내 확인','히로카와 등 선택한 예약제 식당 우선'],
 ['11/22','날씨와 단풍 상태 확인','금각사·에이칸도·도후쿠지 선택 결정'],
 ['11/24','승차권·예약 자료 저장','QR·호텔 주소를 가족에게 공유, 항공사 수하물 규정 확인'],
-['12/1','귀국 준비','라피트·간사이공항 T1·항공사 체크인 마감 확인']
+['12/1','귀국 준비','라피트·간사이공항 T1·항공사 체크인 마감 확인'],
+['후보 선택 후','스키야키 새 후보 예약·3인석 확인','친야 +81-3-3841-0010: 11/26 12:00 점심, 90–120분 여유·전채 해산물 제외 문의. 미시마테이 본점 +81-75-221-0003: 11/28 19:00 또는11/29 18:00, 월 코스·객실료 확인. 11/28은 기요미즈데라 관람 후 기온 대신 택시로 직행(약20–35분 예상), 기온 산책 생략. 11/29는 에이칸도 야간과 택일. 하리주 본점 일본요리 +81-6-6211-7777: 11/30 18:15 또는12/1 13:30·17:30, 각90–120분 여유. 미시마테이 온라인 만석도 전화 문의 가능(공식). 모두 잔여석 미확인·예약 미완료']
 ];
 const H=[
 ['도쿄','karaksa hotel colors Tokyo Yaesu','東京駅 八重洲','11/25–11/28','사용자 확인: 11/26·27·28 호텔 조식 이용.'],
@@ -481,11 +486,11 @@ function mealCard(id,city){
  const imageLabel=(id==='grill'?'스테이크 일러스트':r[2]+' 음식 일러스트')+(recommended?' · 도쿄 30끼 추천':'');
  const media=snackImages[id]?'<div class="foodmedia snack"><img src="./'+esc(snackImages[id])+'" alt="'+esc(imageLabel)+'" loading="lazy"></div>':['grill','daruma'].includes(id)?'<div class="foodmedia '+({grill:'steak',daruma:'kushikatsu'}[id])+'" role="img" aria-label="'+esc(imageLabel)+'">'+badge+'</div>':'<div class="foodmedia atlas" data-atlas="'+atlas+'" data-cell="'+imageCell+'" role="img" aria-label="'+esc(imageLabel)+'">'+badge+'</div>';
  const detailsButton=hasDetails?'<button type="button" class="food-detail-open" data-restaurant-details="'+esc(id)+'" aria-haspopup="dialog" aria-controls="restaurant-detail" aria-label="'+esc(r[0])+' '+(videoPick?'유튜브':'도쿄 30끼')+' 추천 메뉴와 팁 보기">추천 메뉴·팁 보기 ＋</button>':'';
- const phoneLink=id==='kanekobbq'?'<a href="tel:+81364154129" aria-label="야키니쿠 카네코 전화 예약 +81 3 6415 4129">전화 예약 ↗</a>':id==='daruma'?'<a href="tel:+81662132033" aria-label="다루마 난바 본점 전화 문의 +81 6 6213 2033">전화 문의 ↗</a>':videoPick?.phone?'<a href="tel:'+esc(videoPick.phone)+'">전화 문의 ↗</a>':'';
+ const phoneLink=sukiyakiOptions[id]?'<a href="tel:'+esc(sukiyakiOptions[id].phone)+'">전화 문의</a>':id==='daruma'?'<a href="tel:+81662132033" aria-label="다루마 난바 본점 전화 문의 +81 6 6213 2033">전화 문의 ↗</a>':videoPick?.phone?'<a href="tel:'+esc(videoPick.phone)+'">전화 문의 ↗</a>':'';
  const brief=videoPick?kyotoVideoDetails[id]:null;
- const highLinks=highRated?'<a href="tel:'+esc(highRated.phone)+'">전화 문의</a><a href="'+esc(highRated.official)+'" target="_blank" rel="noopener noreferrer">공식 안내</a>':'';
+ const highLinks=sukiyakiOptions[id]?'<a href="'+esc(sukiyakiOptions[id].official)+'" target="_blank" rel="noopener noreferrer">공식 메뉴</a><a href="'+esc(sukiyakiOptions[id].booking)+'" target="_blank" rel="noopener noreferrer">예약 확인</a>':highRated?'<a href="tel:'+esc(highRated.phone)+'">전화 문의</a><a href="'+esc(highRated.official)+'" target="_blank" rel="noopener noreferrer">공식 안내</a>':'';
  const distance='<a class="food-distance" target="_blank" rel="noopener noreferrer" data-food-distance="'+esc(id)+'" hidden></a>';
- const foodCity=['kyounawa','hikinikukyoto','inohanare','gihey','uokeya','moritaya','shiki','madrague'].includes(id)?'교토':city;
+ const foodCity=['kyounawa','hikinikukyoto','inohanare','gihey','uokeya','moritaya','shiki','madrague','mishimatei'].includes(id)?'교토':city;
  return '<article class="food'+(hasDetails?' has-details':'')+'" data-restaurant="'+esc(id)+'">'+media+'<div class="foodbody"><strong>'+esc(r[0])+'</strong><span class="jp" lang="ja">'+esc(r[1])+'</span><span class="meta">'+esc(r[2])+' · '+esc(brief?brief.budget:r[3])+'</span><div class="food-stats"><span class="meta">타베로그 '+esc(r[4])+'</span>'+distance+'</div><span class="notes">'+esc(brief?brief.note:r[7])+'</span>'+detailsButton+'<div class="foodlinks"><a href="'+r[5]+'" target="_blank" rel="noopener noreferrer">타베로그</a><a href="'+maps(r[1]+' '+foodCity)+'" target="_blank" rel="noopener noreferrer">Google Maps</a>'+(videoPick?'':phoneLink)+highLinks+'</div></div></article>'
 }
 function renderKyotoVideoResearch(d){
