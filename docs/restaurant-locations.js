@@ -976,3 +976,6 @@ Object.assign(restaurantLocations,{
  crossties:{latitude:35.68142026783438,longitude:139.7652179333896,name:'5 CROSSTIES COFFEE Gransta Tokyo',source:'https://tabelog.com/en/tokyo/A1302/A130201/13207915/',checked:'2026-11-03'},
  rokumei:{latitude:35.68265314871519,longitude:139.76665887439864,name:'ROKUMEI COFFEE Gransta Marunouchi',source:'https://tabelog.com/en/tokyo/A1302/A130201/13299403/',checked:'2026-11-03'}
 });
+
+// User-selected Midtown branch checked 2026-11-26; exact Tabelog JSON-LD coordinates.
+Object.assign(restaurantLocations,{tsujihanmidtown:{"latitude":35.66562422871456,"longitude":139.7307391042518,"name":"Nihonbashi Kaisen-don Tsujihan Tokyo Midtown Ten","address":{"@type":"PostalAddress","streetAddress":"Akasaka 9-7-1 Tokyo Midtown Galleria B1","addressLocality":"Minato Tokyo","addressRegion":"Tokyo","postalCode":"1070052","addressCountry":"JP"},"source":"https://tabelog.com/en/tokyo/A1307/A130701/13251528/","checked":"2026-11-26"}});
