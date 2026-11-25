@@ -404,7 +404,16 @@ const H=[
 ];
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const maps=q=>'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(q);
-let current=0;
+function initialTripDay(now=new Date()){
+ const parts=new Intl.DateTimeFormat('en-GB',{
+  timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit'
+ }).formatToParts(now);
+ const fields=Object.fromEntries(parts.map(({type,value})=>[type,value]));
+ const today=fields.year+'-'+fields.month+'-'+fields.day;
+ const index=D.findIndex(day=>day.id===today);
+ return index<0?0:index;
+}
+let current=initialTripDay();
 function attrLink(q,label){return q?'<a href="'+maps(q)+'" target="_blank" rel="noopener noreferrer">'+label+'</a>':''}
 const atlasSpec={
  food:{w:1402,h:1122,cols:5,rows:4,url:'./food-illustrations.png'},
@@ -720,6 +729,14 @@ restaurantDialog.addEventListener('close',()=>{
  restaurantDetailTrigger=null;
 });
 render();
+requestAnimationFrame(()=>{
+ const dates=document.getElementById('dates');
+ const selected=dates.querySelector('[aria-current="true"]');
+ if(selected){
+  const tab=selected.getBoundingClientRect(), strip=dates.getBoundingClientRect();
+  dates.scrollLeft+=(tab.left+tab.right-strip.left-strip.right)/2;
+ }
+});
 document.querySelectorAll('.bottom button').forEach(b=>b.addEventListener('click',()=>{stopDateSlide();dateSwipe=null;document.querySelectorAll('.bottom button').forEach(x=>x.setAttribute('aria-current',x===b?'true':'false'));document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===b.dataset.view));if(b.dataset.view==='foodview')refreshFoodLocation();window.scrollTo(0,0);requestAnimationFrame(()=>{applyAtlas();if(b.dataset.view==='transitview')initTripMap()})}));
 window.addEventListener('resize',()=>requestAnimationFrame(applyAtlas));
 let deferredPrompt;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;document.getElementById('install').hidden=false});document.getElementById('install').addEventListener('click',async()=>{if(deferredPrompt){deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;document.getElementById('install').hidden=true}});
