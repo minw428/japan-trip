@@ -1,4 +1,4 @@
-const CACHE='japan-trip-2026-v70-harajuku-shibuya';
+const CACHE='japan-trip-2026-v71-harajuku-direct';
 const KUSHIKATSU_ASSET='./kushikatsu-caricature.jpg';
 const SHELL=['./','./index.html','./tokyo30-details.js','./manifest.webmanifest','./icon.svg','./icon-192.png','./icon-512.png','./food-illustrations.png','./tokyo30-food-illustrations.png','./day-atlas.png','./grill-grand-steak.jpg'];
 SHELL.push('./kyoto-video-review.html');
