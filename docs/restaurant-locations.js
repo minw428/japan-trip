@@ -1,6 +1,18 @@
 // Static restaurant coordinates from public branch and building listings.
 // No live geocoding and no visitor location is sent to a server.
 const restaurantLocations={
+  "torihada": {
+    "latitude": 35.68586531871877,
+    "longitude": 139.7843135344187,
+    "name": "人形町 鳥波多゛",
+    "source": "https://tabelog.com/en/tokyo/A1302/A130204/13122552/"
+  },
+  "isehiro": {
+    "latitude": 35.678496458719,
+    "longitude": 139.77034953435407,
+    "name": "伊勢廣 京橋本店",
+    "source": "https://tabelog.com/en/tokyo/A1302/A130202/13251802/"
+  },
   "ojikacho": {
     "latitude": 35.683036,
     "longitude": 139.773315,
