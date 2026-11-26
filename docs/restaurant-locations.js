@@ -1,6 +1,12 @@
-// Static restaurant coordinates from each linked Tabelog branch's public JSON-LD.
+// Static restaurant coordinates from public branch and building listings.
 // No live geocoding and no visitor location is sent to a server.
 const restaurantLocations={
+  "ojikacho": {
+    "latitude": 35.683036,
+    "longitude": 139.773315,
+    "name": "Ojikacho Nihonbashi",
+    "source": "https://www.office-navi.jp/building/02034911/"
+  },
   "kasagi": {
     "latitude": 34.99814474788058,
     "longitude": 135.78082425027844,
