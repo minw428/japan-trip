@@ -1,4 +1,4 @@
-const CACHE='japan-trip-2026-v74-nozomi-0900-departure';
+const CACHE='japan-trip-2026-v75-kyoto-subway-to-hotel';
 const KUSHIKATSU_ASSET='./kushikatsu-caricature.jpg';
 const SHELL=['./','./index.html','./tokyo30-details.js','./manifest.webmanifest','./icon.svg','./icon-192.png','./icon-512.png','./food-illustrations.png','./tokyo30-food-illustrations.png','./day-atlas.png','./grill-grand-steak.jpg'];
 SHELL.push('./kyoto-video-review.html');
