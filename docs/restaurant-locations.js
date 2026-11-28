@@ -1,6 +1,12 @@
 // Static restaurant coordinates from public branch and building listings.
 // No live geocoding and no visitor location is sent to a server.
 const restaurantLocations={
+  "hanatanuki": {
+    "latitude": 35.0075737,
+    "longitude": 135.7681021,
+    "name": "하나타누키 카와라마치점",
+    "source": "https://hanatanuki.jp/hanatanuki-kawaramati"
+  },
   "torihada": {
     "latitude": 35.68586531871877,
     "longitude": 139.7843135344187,
