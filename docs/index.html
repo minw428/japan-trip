@@ -171,6 +171,7 @@ const tokyo30FoodCell={tsujihanmidtown:0,tsujihan:0,toritake:1,moheji:2,sama:3,n
 Object.assign(foodCell,{bairin:0,bincho:13,bazoku:1,kyubey:3,hikiniku:8,misaki:3,katsukami2:0,poppy:18});
 const heroLabels=['도쿄역·마루노우치','아사쿠사·센소지','메이지신궁·시부야','기요미즈데라·히가시야마','아라시야마','후시미이나리','도톤보리·난바','간사이공항'];
 const R={
+ tamagoSakika:["타마고가 사키카 토리가 사키카","35.007589,135.770577","숯불 닭꼬치 · 야키토리 이자카야","1인 저녁 예산 3,000–3,999엔","3.19 / 15명","https://tabelog.com/kyoto/A2601/A260202/26040233/","","두 분 방문 · 20:30경 도착 · 22:00 퇴점 예정"],
  gombei:["기온 곤베에","35.004139,135.774279","교토식 우동·소바","1인 약 1,000–2,000엔","3.48 / 476명","https://tabelog.com/kyoto/A2601/A260301/26001337/","udon","기온마치 기타가와 254"],
  hanatanuki:["하나타누키 카와라마치점","35.0075737,135.7681021","오코노미야키·교토식 베타야키·철판요리","1인 약 2,000–3,000엔","3.08 / 94명","https://tabelog.com/kyoto/A2601/A260201/26013018/","okonomiyaki","11/28 실제 점심 방문 · 가와라마치 신쿄고쿠 근처 마쓰가에초 456-6, 요기 빌딩 1층"],
  torihada:["토리하다 닌교초점","人形町 鳥波多゛","야키토리 이자카야 · 꼬치 단품","¥3,000–5,999 예상","3.53 / 670명","https://tabelog.com/tokyo/A1302/A130204/13122552/","","야에스 숙소에서 도보 약 15–20분 · 닭다리살과 닭간 등 희소 부위 꼬치를 단품으로 주문 · 16:00–22:30(주문 마감 22:00) · 현금만 · 오토시 ¥500 · 03-3661-5588"],
@@ -244,7 +245,7 @@ Object.assign(R,{
  kiraku:['폰토초 야키니쿠 키라쿠','先斗町焼肉 きらく','와규 야키니쿠·코스','저녁 ¥9,000–14,000 예상','3.61 / 311명','https://tabelog.com/kyoto/A2601/A260301/26041041/','','예약 미완료 · 와규 모둠·우설·등심 구이 또는 키라쿠 코스 ¥8,800(음료·추가 주문 별도) · 영상의 와규 히츠마부시는 주말 점심 메뉴: 저녁 제공을 전제하지 않으며 현재 판매 여부 재확인 · 매일 저녁17:00–24:00, 마지막 주문23:00 · 카드 가능 · 분연 안내이므로 16세 동반 가능 실내 금연석을 예약 시 확인 · 산조역 도보5분, 숙소에서 도보 약 10–15분(예상) · 코스 선택 시 11/29 야간 관람과 시간 조율 · 075-606-5153']
 });
 Object.assign(foodCell,{kyounawa:13,kiraku:10});
-Object.assign(tokyo30FoodCell,{kuchibashi:1,ojikacho:0,torihada:1,isehiro:1}); // Shared food illustrations.
+Object.assign(tokyo30FoodCell,{kuchibashi:1,ojikacho:0,tamagoSakika:1,torihada:1,isehiro:1}); // Shared food illustrations.
 const kyotoVideoPicks={
  kuchibashi:{url:'https://www.youtube.com/shorts/sOrm_7lN66c',reason:'한 가지 꼬치를 많이 먹는 식사가 아니라, 부위마다 다른 굽기와 구성을 코스로 즐기고 싶을 때. 영상에서도 야키토리 코스의 구성과 부위별 맛을 좋게 평가한 곳입니다.',official:'https://www.instagram.com/kuchibashimodan/',phone:'+81753520633'},
  kyounawa:{url:'https://www.youtube.com/shorts/tKSLPYeji3s',reason:'구운 장어를 그대로 먹고, 약미와 육수로 맛을 바꿔가며 한 끼를 즐기는 히츠마부시. 영상에서는 재방문하고 싶고 귀국 후에도 생각나는 장어 식사로 소개했습니다.',official:'https://kyo-unawa.com/menu/'},
@@ -337,7 +338,7 @@ const meals={
  '2026-11-25':[['늦은 점심',['suzuki','rokurin','ikaruga','kaneko','hanamaru']],['저녁',['kaneko','suzuki','rokurin','ikaruga','hanamaru']]],
  '2026-11-26':[['점심',['urin','umikaze']],['저녁',['tsujihan','tsujihanmidtown','grill','imahan','urin','umikaze','kibun']],['숙소 근처 이자카야 · 야키토리',['ojikacho','torihada','isehiro']]],
  '2026-11-27':[['점심',['tonkatsujp','junchan','menchira','burger','chao']],['저녁',['kuroda','menchira','burger','chao','hanamaru','yuji']],['숙소 근처 이자카야 · 야키토리',['ojikacho','torihada','isehiro']]],
- '2026-11-28':[['점심',['hanatanuki']],['저녁',['gombei']]],
+ '2026-11-28':[['점심',['hanatanuki']],['저녁',['gombei']],['저녁 후 한잔',['tamagoSakika']]],
  '2026-11-29':[['아침',['yamamoto','smart','inoda','petit','walden']],['점심',['omen','ino','inohanare','shiki','smart']],['저녁',['mishimatei','shiki','moritaya','uokeya','gihey','kiraku','kuchibashi','kyounawa','hikinikukyoto','inohanare','omen','roku','ino','hafuu']]],
  '2026-11-30':[['아침',['yamamoto','smart','inoda','petit','walden']],['점심',['kyounawa','hikinikukyoto','omen','ino','hafuu','smart']],['저녁',['hariju','daruma','mizuno','fukutaro','imai','ippo','hide']]],
  '2026-12-01':[['점심',['hariju','daruma','ajinoya','mizuno','imai','ippo','joroku']],['저녁',['hariju','daruma','ajinoya','fukutaro','imai','joroku','hide']]]
@@ -508,8 +509,9 @@ function mealCard(id,city,meal){
  const dinnerSelected=todayDinner&&id==='tsujihan';
  const kyotoLunchSelected=D[current].id==='2026-11-28'&&meal==='점심'&&id==='hanatanuki';
  const gombeiDinner=D[current].id==='2026-11-28'&&meal==='저녁'&&id==='gombei';
- const selected=gombeiDinner||lunchSelected||dinnerSelected||kyotoLunchSelected;
- const bookingTag=booked?'<span class="food-booking">예약 완료 · '+esc(booking.time)+'</span>':lunchSelected?'<span class="food-booking">12:00 점심 · 입장 확인 필요</span>':dinnerSelected?'<span class="food-booking">오늘 저녁 · 본점</span>':gombeiDinner?'<span class="food-booking">11/28 저녁 · 식사 완료</span>':kyotoLunchSelected?'<span class="food-booking">11/28 점심 · 방문 확인</span>':todayLunch&&id==='umikaze'?'<span class="food-booking">대안 · 전석 금연</span>':'';
+ const drinksVisited=D[current].id==='2026-11-28'&&id==='tamagoSakika';
+ const selected=drinksVisited||gombeiDinner||lunchSelected||dinnerSelected||kyotoLunchSelected;
+ const bookingTag=booked?'<span class="food-booking">예약 완료 · '+esc(booking.time)+'</span>':lunchSelected?'<span class="food-booking">12:00 점심 · 입장 확인 필요</span>':dinnerSelected?'<span class="food-booking">오늘 저녁 · 본점</span>':drinksVisited?'<span class="food-booking">11/28 · 방문 확인</span>':gombeiDinner?'<span class="food-booking">11/28 저녁 · 식사 완료</span>':kyotoLunchSelected?'<span class="food-booking">11/28 점심 · 방문 확인</span>':todayLunch&&id==='umikaze'?'<span class="food-booking">대안 · 전석 금연</span>':'';
  const videoPick=kyotoVideoPicks[id];
  const highRated=highRatedOptions[id];
  const recommended=tokyo30Recommended.has(id),hasDetails=recommended||!!videoPick,badge=recommended?'<span class="food-source">도쿄 30끼 추천</span>':videoPick?'<span class="food-source kyoto-source">유튜브 추천</span>':highRatedOptions[id]?'<span class="food-source" title="2026/10/13 확인한 타베로그 종합 평점">타베로그 4.0+</span>':'';
@@ -522,7 +524,7 @@ function mealCard(id,city,meal){
  const highLinks=sukiyakiOptions[id]?'<a href="'+esc(sukiyakiOptions[id].official)+'" target="_blank" rel="noopener noreferrer">공식 메뉴</a><a href="'+esc(sukiyakiOptions[id].booking)+'" target="_blank" rel="noopener noreferrer">예약 확인</a>':highRated?'<a href="tel:'+esc(highRated.phone)+'">전화 문의</a><a href="'+esc(highRated.official)+'" target="_blank" rel="noopener noreferrer">공식 안내</a>':'';
  const distance='<a class="food-distance" target="_blank" rel="noopener noreferrer" data-food-distance="'+esc(id)+'" hidden></a>';
  const foodCity=['kyounawa','hikinikukyoto','inohanare','gihey','uokeya','moritaya','shiki','madrague','mishimatei'].includes(id)?'교토':city;
- return '<article class="food'+(booked?' is-booked':selected?' is-selected':'')+(hasDetails?' has-details':'')+'" data-restaurant="'+esc(id)+'">'+media+'<div class="foodbody"><strong>'+esc(r[0])+'</strong>'+bookingTag+'<span class="meta">'+esc(r[2])+' · '+esc(brief?brief.budget:r[3])+'</span><div class="food-stats"><span class="meta">타베로그 '+esc(r[4])+'</span>'+distance+'</div><span class="notes">'+esc(brief?brief.note:r[7])+'</span>'+detailsButton+'<div class="foodlinks"><a href="'+r[5]+'" target="_blank" rel="noopener noreferrer">타베로그</a><a href="'+maps(['hanatanuki','gombei'].includes(id)?r[1]:r[1]+' '+foodCity)+'" target="_blank" rel="noopener noreferrer">Google Maps</a>'+(videoPick?'':phoneLink)+highLinks+'</div></div></article>'
+ return '<article class="food'+(booked?' is-booked':selected?' is-selected':'')+(hasDetails?' has-details':'')+'" data-restaurant="'+esc(id)+'">'+media+'<div class="foodbody"><strong>'+esc(r[0])+'</strong>'+bookingTag+'<span class="meta">'+esc(r[2])+' · '+esc(brief?brief.budget:r[3])+'</span><div class="food-stats"><span class="meta">타베로그 '+esc(r[4])+'</span>'+distance+'</div><span class="notes">'+esc(brief?brief.note:r[7])+'</span>'+detailsButton+'<div class="foodlinks"><a href="'+r[5]+'" target="_blank" rel="noopener noreferrer">타베로그</a><a href="'+maps(['hanatanuki','gombei','tamagoSakika'].includes(id)?r[1]:r[1]+' '+foodCity)+'" target="_blank" rel="noopener noreferrer">Google Maps</a>'+(videoPick?'':phoneLink)+highLinks+'</div></div></article>'
 }
 function renderKyotoVideoResearch(d){
  if(!['2026-11-28','2026-11-29','2026-11-30'].includes(d.id))return '';
