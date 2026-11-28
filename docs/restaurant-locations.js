@@ -1,6 +1,7 @@
 // Static restaurant coordinates from public branch and building listings.
 // No live geocoding and no visitor location is sent to a server.
 const restaurantLocations={
+  "gombei": {"latitude":35.004139,"longitude":135.774279,"name":"기온 곤베에","source":"https://tabelog.com/kyoto/A2601/A260301/26001337/"},
   "hanatanuki": {
     "latitude": 35.0075737,
     "longitude": 135.7681021,
